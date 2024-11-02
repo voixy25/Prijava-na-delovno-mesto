@@ -1,0 +1,141 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+html, body{
+    font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+}
+body { 
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.container {
+    width: 78%;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.divider{
+    background-color: rgba(0, 0, 0, 0.1);
+    display: block;
+    height: 3px;
+    margin: 1em auto 0;
+    max-width: 30px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.radio{
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+.combo{
+    margin-top: 0;
+    font-weight: normal;
+}
+
+#privacy{
+    margin-top: 10px;
+}
+
+#cb{
+    margin-bottom: 5px;
+}
+
+input, select, button {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(122, 122, 255, 0.1);
+}
+
+.checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(242px, auto));
+    gap: 7px; /* Adjust the gap between items as needed */
+}
+
+button {
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.checkboxes input[type="checkbox"] {
+    margin: 0 5px 5px 0; /* Adjust this value for more or less space */
+}
+
+.error-message{
+    display: none;
+    color: red;
+    margin-top: 5px;
+}
+
+#drivers-license {
+    display: flex; /* Use flexbox to align items in a row */
+    gap: 15px; /* Optional: adjust the space between the radio options */
+}
+
+#drivers-license div {
+    display: flex; /* Ensure the label and input are in line */
+    align-items: center; /* Center align items vertically */
+}
+
+#drivers-license input[type="radio"] {
+    margin-right: 5px; /* Adjust this value for more or less space */
+}
+
+.scroll-to-top {
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    width: 40px; /* Width of the button */
+    height: 40px; /* Height of the button */
+    background-color: #007BFF; /* Button color */
+    color: white; /* Icon color */
+    text-align: center; /* Center the icon */
+    line-height: 40px; /* Center icon vertically */
+    border-radius: 50%; /* Round shape */
+    font-size: 24px; /* Icon size */
+    text-decoration: none; /* Remove underline */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s; /* Fade effect */
+}
+
+.scroll-to-top:hover {
+    background-color: #0056b3;
+}
+.scroll-to-top.show {
+    opacity: 1; /* Show when class is added */
+}
