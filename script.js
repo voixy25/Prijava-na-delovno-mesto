@@ -23,6 +23,54 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 'privacy', errorMessage: 'S politiko zasebnosti se morate strinjati za nadaljevanje.', isCheckbox: true },
     ];
 
+    const phoneInput = document.getElementById('phone');
+phoneInput.addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+    
+    // Ensure the first digit is 0
+    if (value.length > 0 && value[0] !== '0') {
+        value = '0' + value.slice(1);
+    }
+    
+    // Apply formatting as ###-###-###
+    if (value.length > 3 && value.length <= 6) {
+        value = `${value.slice(0, 3)}-${value.slice(3)}`;
+    } else if (value.length > 6) {
+        value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6, 9)}`;
+    }
+
+    e.target.value = value; // Set the formatted value back to the input
+});
+
+const addressInput = document.getElementById('address');
+addressInput.addEventListener('input', function (e) {
+    let value = e.target.value;
+
+    // Remove leading/trailing whitespace and any invalid characters
+    value = value.replace(/[^a-zA-Z0-9\s]/g, '');
+
+    // Regular expression to match "at least two letters, space, at least one digit"
+    const addressPattern = /^[A-Za-z]{2,}\s\d+$/;
+
+    // Auto-format: Insert a space before the first digit
+    let letters = value.match(/^[A-Za-z]+/);
+    let digits = value.match(/\d+$/);
+    if (letters && digits) {
+        value = letters[0] + ' ' + digits[0];
+    }
+
+    // Check if input matches the pattern
+    if (addressPattern.test(value)) {
+        e.target.setCustomValidity(''); // Clear any previous error
+    } else {
+        e.target.setCustomValidity('Vnesite ulico in hišno številko.');
+    }
+
+    e.target.value = value; // Set the formatted value back to the input
+});
+
+
+
     function validateFields() {
         let hasError = false;
         let firstErrorFieldId = '';
@@ -125,12 +173,20 @@ document.addEventListener('DOMContentLoaded', function () {
         if (fieldElement) {
             const rect = fieldElement.getBoundingClientRect();
             if (rect.top < 0 || rect.bottom > window.innerHeight) {
-                // Scroll to the field smoothly, and add an offset for better visibility
+                // Scroll to the field smoothly with a 100px offset for visibility
                 window.scrollTo({
-                    top: window.scrollY + rect.top - 100, // Offset by 100px for clarity
+                    top: window.scrollY + rect.top - 100, // Offset by 100px
                     behavior: 'smooth'
                 });
             }
+            
+            // Focus and select the content of the field after scrolling
+            setTimeout(() => {
+                fieldElement.focus();
+                if (fieldElement.select) {
+                    fieldElement.select(); // Select the content if it's an input or textarea
+                }
+            }, 400); // Delay to ensure scroll completes before selecting
         }
     }
 
