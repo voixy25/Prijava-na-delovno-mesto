@@ -53,18 +53,24 @@
         <span class="error-message" id="city-error">Polje je obvezno.</span>
 
         <label>Datum rojstva *</label>
-        <input type="date" id="dob">
+        <input type="date" id="dob" class="dates">
         <span class="error-message" id="dob-error"
           >Vnesite veljaven datum rojstva.</span
         >
 
         <label>Stopnja izobrazbe *</label>
-        <select id="education-level">
+        <select id="education-level" class="options">
           <option value="">--Prosim izberite--</option>
-          <option value="high-school">Srednja šola</option>
-          <option value="bachelor">Diploma</option>
-          <option value="master">Magisterij</option>
-          <option value="phd">Doktorat</option>
+          <option value="1">I. nedokončana osnovna šola</option>
+          <option value="2">II. končana osnovna šola</option>
+          <option value="3">III. nižje poklicno izobraževanje (2-letno)</option>
+          <option value="4">IV. srednje poklicno izobraževanje (3-letno)</option>
+          <option value="5">V. gimnazijsko, srednje poklicno-tehniško izobraževanje, srednje tehniško oziroma drugo izobraževanje</option>
+          <option value="6">VI./1 Višješolski program (do 1994), višješolski strokovni program</option>
+          <option value="7">VI./2 specializacija po višješolskem programu, visokošolski strokovni program /visokošolski strokovni in univerzitetni program (1. bolonjska stopnja)</option>
+          <option value="8">VII. specializacija po visokošolskem strokovnem programu, univerzitetni program (magisterij stroke, 2. bolonjska stopnja)</option>
+          <option value="9">VIII./1 specializacija po univerzitetnem programu, magisterij znanosti</option>
+          <option value="10">VIII./3 doktorat znanosti (doktorat znanosti, 3. bolonjska stopnja)</option>
         </select>
         <span class="error-message" id="education-level-error"
           >Izberite stopnjo izobrazbe.</span
@@ -94,7 +100,7 @@
         <input
           type="text"
           id="other-skills"
-          placeholder="Borzno posredovanje, popravljanje oken in vrat ..."
+          placeholder="Borzno posredovanje, oblikovanje ..."
         >
         <span class="error-message" id="other-skills-error"
           >Polje je obvezno.</span
@@ -313,7 +319,7 @@
         >
 
         <label>Znanje angleškega jezika *</label>
-        <select id="english">
+        <select id="english" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="none">Ne znam</option>
           <option value="a1">A1</option>
@@ -322,13 +328,14 @@
           <option value="b2">B2</option>
           <option value="c1">C1</option>
           <option value="c2">C2</option>
+          <option value="main">Materni jezik</option>
         </select>
         <span class="error-message" id="english-error"
           >Izberite ustrezno stopnjo znanja.</span
         >
 
         <label>Znanje italijanskega jezika *</label>
-        <select id="italian">
+        <select id="italian" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="none">Ne znam</option>
           <option value="a1">A1</option>
@@ -337,19 +344,20 @@
           <option value="b2">B2</option>
           <option value="c1">C1</option>
           <option value="c2">C2</option>
+          <option value="main">Materni jezik</option>
         </select>
         <span class="error-message" id="italian-error"
           >Izberite ustrezno stopnjo znanja.</span
         >
 
         <label>Začetek dela *</label>
-        <input type="date" id="start-date">
+        <input type="date" id="start-date" class="dates">
         <span class="error-message" id="start-date-error"
           >Vnesite veljaven datum začetka dela.</span
         >
 
         <label>Zaposlitveni status *</label>
-        <select id="status">
+        <select id="status" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="employed">Zaposlen</option>
           <option value="self-employed">Samozaposlen</option>
