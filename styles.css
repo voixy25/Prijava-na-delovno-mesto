@@ -106,7 +106,7 @@ input, select, button {
 }
 
 .options {
-    font-size: 0.70vmax /* Slightly larger for smaller screens */
+    font-size: 1.25vh /* Slightly larger for smaller screens */
 }
 
 .checkboxes {
