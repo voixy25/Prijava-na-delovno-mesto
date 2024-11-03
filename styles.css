@@ -1,141 +1,178 @@
-*{
-	padding: 0;
-	margin: 0;
+* {
+    padding: 0;
+    margin: 0;
 }
-html, body{
-    font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+
+html, body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Določanje pisave */
 }
+
 body { 
-    background-color: #f7f7f7;
-    padding: 20px;
+    background-attachment: scroll; /* Ozadje se pomika s vsebino */
+    background-color: rgba(122, 122, 255, 0.1); /* Barva ozadja v primeru napake pri nalaganju slike */
+    padding: 20px; /* Odlomek od roba */
+    position: relative; /* Ustvari kontekst za pozicioniranje prekrivanja */
+    min-height: 100vh; /* Minimalna višina telesa, da pokrije celoten pogled */
+}
+
+/* Dodajanje prekrivanja za izboljšanje berljivosti */
+body::before {
+    content: "";
+    position: absolute; /* Absolutno pozicioniranje */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.664); /* Barva in prosojnost prekrivanja */
+    z-index: -1; /* Postavi za vso vsebino */
+}
+
+#loading {
+    position: fixed; /* Use 'fixed' to keep it in place even when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.fade-out {
+    opacity: 0;
 }
 
 .container {
-    width: 78%;
-    margin: auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 78%; /* Širina vsebine */
+    margin: auto; /* Avtomatski rob za centriranje */
+    background-color: white; /* Barva ozadja vsebine */
+    padding: 20px; /* Odlomek znotraj vsebine */
+    border-radius: 10px; /* Zaobljeni robovi */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Senca okoli vsebine */
 }
 
 h1 {
-    text-align: center;
+    text-align: center; /* Centriranje naslova */
 }
 
-.divider{
-    background-color: rgba(0, 0, 0, 0.1);
-    display: block;
-    height: 3px;
-    margin: 1em auto 0;
-    max-width: 30px;
-    width: 100%;
-    border-radius: 5px;
+.divider {
+    background-color: rgba(0, 0, 0, 0.1); /* Barva delitelja */
+    display: block; /* Prikaz delitelja */
+    height: 3px; /* Višina delitelja */
+    margin: 1em auto 0; /* Odlomek zgoraj in avto rob spodaj */
+    max-width: 30px; /* Maksimalna širina delitelja */
+    width: 100%; /* Širina delitelja */
+    border-radius: 5px; /* Zaobljeni robovi delitelja */
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Prikaz obrazca kot fleksibilna vsebina */
+    flex-direction: column; /* Stolpni prikaz elementov */
 }
 
 label {
-    margin-top: 10px;
-    font-weight: bold;
+    margin-top: 10px; /* Odlomek zgoraj pri oznakah */
+    font-weight: bold; /* Poudarjena pisava */
 }
 
-.radio{
-    margin-top: 5px;
-    font-weight: normal;
+.radio {
+    margin-top: 5px; /* Odlomek zgoraj za radijske gumbe */
+    font-weight: normal; /* Normalna pisava */
 }
 
-.combo{
-    margin-top: 0;
-    font-weight: normal;
+.combo {
+    margin-top: 0; /* Ni odlomka zgoraj za kombinirane elemente */
+    font-weight: normal; /* Normalna pisava */
 }
 
-#privacy{
-    margin-top: 10px;
+#privacy {
+    margin-top: 10px; /* Odlomek zgoraj za politiko zasebnosti */
 }
 
-#cb{
-    margin-bottom: 5px;
+#cb {
+    margin-bottom: 5px; /* Odlomek spodaj za potrditvene gumbe */
 }
 
 input, select, button {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(122, 122, 255, 0.1);
+    padding: 10px; /* Odlomek znotraj vhodnih elementov */
+    margin-top: 5px; /* Odlomek zgoraj za vhodne elemente */
+    border: 1px solid #ccc; /* Rob vhodnih elementov */
+    border-radius: 5px; /* Zaobljeni robovi vhodnih elementov */
+    background-color: rgba(122, 122, 255, 0.1); /* Barva ozadja vhodnih elementov */
 }
 
 .checkboxes {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(242px, auto));
-    gap: 7px; /* Adjust the gap between items as needed */
+    display: grid; /* Prikaz potrditvenih polj v mreži */
+    grid-template-columns: repeat(auto-fill, minmax(242px, auto)); /* Mreža s prilagoditvijo širine */
+    gap: 7px; /* Razmik med elementi */
 }
 
 button {
-    margin-top: 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
+    margin-top: 20px; /* Odlomek zgoraj za gumb */
+    background-color: #007BFF; /* Barva gumba */
+    color: white; /* Barva besedila gumba */
+    border: none; /* Brez roba gumba */
+    cursor: pointer; /* Kazalec se spremeni v roko pri prehodu nad gumbom */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Barva gumba ob prehodu */
 }
 
 .checkbox-item {
-    display: flex;
-    align-items: center; /* Align items vertically */
+    display: flex; /* Prikaz potrditvenih elementov v vrsti */
+    align-items: center; /* Vertikalno poravnava elemente */
 }
 
 .checkboxes input[type="checkbox"] {
-    margin: 0 5px 5px 0; /* Adjust this value for more or less space */
+    margin: 0 5px 5px 0; /* Razmik med potrditvenimi polji */
 }
 
-.error-message{
-    display: none;
-    color: red;
-    margin-top: 5px;
+.error-message {
+    display: none; /* Skrij napake privzeto */
+    color: red; /* Barva napak */
+    margin-top: 5px; /* Odlomek zgoraj za napake */
 }
 
 #drivers-license {
-    display: flex; /* Use flexbox to align items in a row */
-    gap: 15px; /* Optional: adjust the space between the radio options */
+    display: flex; /* Uporabi fleksibilno vsebino za radijske gumbe */
+    gap: 15px; /* Razmik med radijskimi možnostmi */
 }
 
 #drivers-license div {
-    display: flex; /* Ensure the label and input are in line */
-    align-items: center; /* Center align items vertically */
+    display: flex; /* Zagotovi, da sta oznaka in vhod v vrsti */
+    align-items: center; /* Center poravnava elemente vertikalno */
 }
 
 #drivers-license input[type="radio"] {
-    margin-right: 5px; /* Adjust this value for more or less space */
+    margin-right: 5px; /* Razmik desno od radijskih gumbov */
 }
 
 .scroll-to-top {
-    position: fixed; /* Fixed position */
-    bottom: 20px; /* Distance from the bottom */
-    right: 20px; /* Distance from the right */
-    width: 40px; /* Width of the button */
-    height: 40px; /* Height of the button */
-    background-color: #007BFF; /* Button color */
-    color: white; /* Icon color */
-    text-align: center; /* Center the icon */
-    line-height: 40px; /* Center icon vertically */
-    border-radius: 50%; /* Round shape */
-    font-size: 24px; /* Icon size */
-    text-decoration: none; /* Remove underline */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s; /* Fade effect */
+    position: fixed; /* Fiksna pozicija */
+    bottom: 20px; /* Razdalja od dna */
+    right: 20px; /* Razdalja od desne */
+    width: 40px; /* Širina gumba */
+    height: 40px; /* Višina gumba */
+    background-color: #007BFF; /* Barva gumba */
+    color: white; /* Barva ikone */
+    text-align: center; /* Centriraj ikono */
+    line-height: 40px; /* Vertikalno centriranje ikone */
+    border-radius: 50%; /* Krožna oblika */
+    font-size: 24px; /* Velikost ikone */
+    text-decoration: none; /* Odstrani podčrtavanje */
+    opacity: 0; /* Sprva skrita */
+    transition: opacity 0.3s; /* Efekt prehoda */
 }
 
 .scroll-to-top:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Barva gumba ob prehodu */
 }
+
 .scroll-to-top.show {
-    opacity: 1; /* Show when class is added */
+    opacity: 1; /* Prikaži, ko je dodana razred */
 }

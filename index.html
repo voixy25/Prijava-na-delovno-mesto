@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Form</title>
+    <title>Prijava na delovno mesto</title>
+    <link rel="icon" href="slike/favicon.ico" type="image/x-icon"> <!-- Use the appropriate path to your favicon -->
+    <link rel="shortcut icon" href="slike/favicon.ico" type="image/x-icon"> <!-- For older browsers -->
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./dist/configurable-date-input-polyfill.dist.js"></script>
-<script src="node_modules/configurable-date-input-polyfill/dist/configurable-date-input-polyfill.dist.js"></script>
+    <link href="https://fonts.cdnfonts.com/css/gill-sans-2" rel="stylesheet">
   </head>
 
   <body>
-    <div class="container">
+    <div id="loading">
+      <img src="slike/load.gif" alt="Loading...">
+  </div>
+    <div class="container" >
       <h1>Prijava na delovno mesto</h1>
       <div class="divider"></div>
       <form id="job-application-form" method="post">
         <label>Ime in priimek *</label>
         <input type="text" id="name" placeholder="Janez Novak">
-        <span class="error-message" id="name-error">Polje je obvezno.</span>
+        <span class="error-message" id="name-error">Vnesite ime in priimek.</span>
 
         <label>E-mail *</label>
         <input type="email" id="email" placeholder="janez.novak@gmail.com">
@@ -308,6 +312,7 @@
         <label>Znanje angleškega jezika *</label>
         <select id="english">
           <option value="">--Prosim izberite--</option>
+          <option value="none">Ne znam</option>
           <option value="a1">A1</option>
           <option value="a2">A2</option>
           <option value="b1">B1</option>
@@ -319,9 +324,10 @@
           >Izberite ustrezno stopnjo znanja.</span
         >
 
-        <label>Znanje hrvaškega jezika *</label>
-        <select id="croatian">
+        <label>Znanje italijanskega jezika *</label>
+        <select id="italian">
           <option value="">--Prosim izberite--</option>
+          <option value="none">Ne znam</option>
           <option value="a1">A1</option>
           <option value="a2">A2</option>
           <option value="b1">B1</option>
@@ -329,7 +335,7 @@
           <option value="c1">C1</option>
           <option value="c2">C2</option>
         </select>
-        <span class="error-message" id="croatian-error"
+        <span class="error-message" id="italian-error"
           >Izberite ustrezno stopnjo znanja.</span
         >
 

@@ -1,3 +1,11 @@
+window.onload = function () {
+    setTimeout(function () {
+        const loader = document.getElementById('loading');
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.style.display = 'none', 1000); // Adjust this to match transition duration
+    }, 5000);
+};
+
 document.addEventListener('DOMContentLoaded', function () {
     const fieldsToCheckBeforeExperience = [
         { id: 'name', errorMessage: 'Vnesite vaše ime in priimek.' },
@@ -16,12 +24,40 @@ document.addEventListener('DOMContentLoaded', function () {
     const fieldsToCheckAfterExperience = [
         { id: 'drivers-license', errorMessage: 'Izberite stanje vašega vozniškega dovoljenja.', isRadio: true },
         { id: 'english', errorMessage: 'Izberite ustrezno stopnjo znanja angleškega jezika.' },
-        { id: 'croatian', errorMessage: 'Izberite ustrezno stopnjo znanja hrvaškega jezika.' },
+        { id: 'italian', errorMessage: 'Izberite ustrezno stopnjo znanja italijanskega jezika.' },
         { id: 'start-date', errorMessage: 'Vnesite veljaven datum začetka dela.' },
         { id: 'status', errorMessage: 'Izberite ustrezen zaposlitveni status.' },
         { id: 'file-upload', errorMessage: 'Neveljaven ali manjkajoč življenjepis.' },
         { id: 'privacy', errorMessage: 'S politiko zasebnosti se morate strinjati za nadaljevanje.', isCheckbox: true },
     ];
+
+    const nameInput = document.getElementById('name');
+const nameErrorSpan = document.getElementById('name-error');
+
+nameInput.addEventListener('input', function (e) {
+    // Get the current value of the input field
+    let value = e.target.value;
+
+    // Remove any characters that are not letters or spaces
+    value = value.replace(/[^a-zA-Z\s]/g, '');
+
+    // Set the formatted value back to the input
+    e.target.value = value;
+
+    // Split the value into parts based on spaces and filter out any empty strings
+    const nameParts = value.split(' ').filter(part => part.length > 0); // Keep only non-empty parts
+
+    // Validate the input value
+    const isValid = nameParts.length >= 2; // Ensure there are at least two parts (first and last name)
+
+    // Check the validity of the input
+    if (isValid) {
+        nameErrorSpan.style.display = 'none'; // Hide error if valid
+        e.target.setCustomValidity(''); // Clear any previous error
+    } else {
+        e.target.setCustomValidity('Vnesite ime in priimek.'); // Set custom error message
+    }
+});
 
     const phoneInput = document.getElementById('phone');
 phoneInput.addEventListener('input', function (e) {
@@ -40,6 +76,14 @@ phoneInput.addEventListener('input', function (e) {
     }
 
     e.target.value = value; // Set the formatted value back to the input
+
+    const errorSpan = document.getElementById('phone-error');
+    if (value.length === 11) { // 0XX-XXX-XXX has exactly 11 characters
+        errorSpan.style.display = 'none'; // Hide error if valid
+        e.target.setCustomValidity('');
+    } else {
+        e.target.setCustomValidity('Vnesite veljavno telefonsko številko');
+    }
 });
 
 const addressInput = document.getElementById('address');
@@ -60,78 +104,190 @@ addressInput.addEventListener('input', function (e) {
     }
 
     // Check if input matches the pattern
+    
+
+    e.target.value = value; // Set the formatted value back to the input
+
+    const errorSpan = document.getElementById('address-error');
     if (addressPattern.test(value)) {
+        errorSpan.style.display = 'none'; // Hide error if valid
         e.target.setCustomValidity(''); // Clear any previous error
     } else {
         e.target.setCustomValidity('Vnesite ulico in hišno številko.');
     }
+});
 
-    e.target.value = value; // Set the formatted value back to the input
+const cityInput = document.getElementById('city');
+const cityErrorSpan = document.getElementById('city-error');
+
+// Add event listener for input validation
+cityInput.addEventListener('input', function (e) {
+    // Get the current value of the input field
+    let value = e.target.value;
+
+    // Remove any characters that are not letters or spaces
+    value = value.replace(/[^a-zA-Z\s]/g, '');
+
+    // Set the formatted value back to the input
+    e.target.value = value;
+
+    // Check if the value has at least 2 letters (excluding spaces)
+    const letterCount = (value.match(/[a-zA-Z]/g) || []).length; // Count letters
+
+    // Check the validity of the input
+    if (letterCount >= 2) {
+        cityErrorSpan.style.display = 'none'; // Hide error if valid
+        e.target.setCustomValidity(''); // Clear any previous error
+    } else {
+        e.target.setCustomValidity('Vnesite veljaven kraj.'); // Set custom error message
+    }
+});
+
+const postalCodeInput = document.getElementById('postal-code');
+
+postalCodeInput.addEventListener('input', function (e) {
+    // Remove any non-digit characters
+    let value = e.target.value.replace(/\D/g, '');
+
+    // Ensure the first digit is not 0
+    if (value.length > 0 && value[0] === '0') {
+        value = value.slice(1); // Remove the leading 0 if it exists
+    }
+
+    // Limit to a maximum of 4 digits
+    if (value.length > 4) {
+        value = value.slice(0, 4);
+    }
+
+    // Set the formatted value back to the input field
+    e.target.value = value;
+
+    // Display error if the postal code is not exactly 4 digits or starts with 0
+    const errorSpan = document.getElementById('postal-code-error');
+    if (value.length === 4) {
+        errorSpan.style.display = 'none'; // Hide error if valid
+        e.target.setCustomValidity('');
+    } else {
+        e.target.setCustomValidity('Vnesite veljavno poštno številko.');
+    }
 });
 
 
 
-    function validateFields() {
-        let hasError = false;
-        let firstErrorFieldId = '';
+function handleNoExperienceSelection() {
+    const noExperienceCheckbox = document.getElementById('no-experience');
+    const checkboxes = document.querySelectorAll('input[name="experience"]');
 
-        // Reset error messages
-        [...fieldsToCheckBeforeExperience, ...fieldsToCheckAfterExperience].forEach(field => {
-            const errorSpan = document.getElementById(`${field.id}-error`);
-            errorSpan.style.display = 'none'; // Hide error message
-        });
-
-        // Validate fields before experience
-        for (const field of fieldsToCheckBeforeExperience) {
-            const input = document.getElementById(field.id);
-            if (input.value.trim() === '' && !hasError) {
-                hasError = true;
-                firstErrorFieldId = field.id; // Set to the first empty required field
+    // If "Nimam izkušenj" is checked, uncheck all other boxes
+    if (noExperienceCheckbox.checked) {
+        checkboxes.forEach(checkbox => {
+            if (checkbox !== noExperienceCheckbox) {
+                checkbox.checked = false;
             }
-        }
+        });
+    }
+    updateErrorMessage();
+}
 
-        // Check if at least one experience checkbox is selected
-        const experienceCheckboxes = document.querySelectorAll('input[name="experience"]');
-        const hasExperienceChecked = Array.from(experienceCheckboxes).some(checkbox => checkbox.checked);
-        if (!hasExperienceChecked && !hasError) {
+function handleExperienceSelection() {
+    const noExperienceCheckbox = document.getElementById('no-experience');
+    const checkboxes = document.querySelectorAll('input[name="experience"]');
+
+    // If any other checkbox is checked, uncheck "Nimam izkušenj"
+    if (Array.from(checkboxes).some(checkbox => checkbox.checked && checkbox !== noExperienceCheckbox)) {
+        noExperienceCheckbox.checked = false;
+    }
+    updateErrorMessage();
+}
+
+function updateErrorMessage() {
+    // This function can be used to dynamically show/hide experience-related errors
+    const experienceCheckboxes = document.querySelectorAll('input[name="experience"]');
+    const hasExperienceChecked = Array.from(experienceCheckboxes).some(checkbox => checkbox.checked);
+    const errorSpan = document.getElementById('experience-error');
+    
+    if (!hasExperienceChecked) {
+        errorSpan.innerText = 'Vsaj eno izkušnjo morate izbrati.';
+        errorSpan.style.display = 'inline';
+    } else {
+        errorSpan.style.display = 'none';
+    }
+}
+
+// Add event listeners for experience checkboxes
+const experienceCheckboxes = document.querySelectorAll('input[name="experience"]');
+experienceCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+        if (checkbox.id === 'no-experience') {
+            handleNoExperienceSelection();
+        } else {
+            handleExperienceSelection();
+        }
+    });
+});
+
+// Input validation and formatting logic (rest of your existing code)...
+
+function validateFields() {
+    let hasError = false;
+    let firstErrorFieldId = '';
+
+    // Reset error messages
+    [...fieldsToCheckBeforeExperience, ...fieldsToCheckAfterExperience].forEach(field => {
+        const errorSpan = document.getElementById(`${field.id}-error`);
+        errorSpan.style.display = 'none'; // Hide error message
+    });
+
+    // Validate fields before experience
+    for (const field of fieldsToCheckBeforeExperience) {
+        const input = document.getElementById(field.id);
+        if (input.value.trim() === '' && !hasError) {
             hasError = true;
-            firstErrorFieldId = 'experience-error'; // Point to experience error
+            firstErrorFieldId = field.id; // Set to the first empty required field
         }
+    }
 
-        // Validate fields after experience only if no errors before experience
-        if (!hasError) {
-            for (const field of fieldsToCheckAfterExperience) {
-                const input = document.getElementById(field.id);
-                if (field.isRadio) {
-                    const radios = document.getElementsByName(field.id);
-                    const isChecked = Array.from(radios).some(radio => radio.checked);
-                    if (!isChecked) {
-                        hasError = true;
-                        firstErrorFieldId = field.id;
-                        break;
-                    }
-                } else if (field.isCheckbox) {
-                    if (!input.checked) {
-                        hasError = true;
-                        firstErrorFieldId = field.id;
-                        break;
-                    }
-                } else if (input.value.trim() === '') {
+    // Check if at least one experience checkbox is selected
+    const hasExperienceChecked = Array.from(experienceCheckboxes).some(checkbox => checkbox.checked);
+    if (!hasExperienceChecked && !hasError) {
+        hasError = true;
+        firstErrorFieldId = 'experience-error'; // Point to experience error
+    }
+
+    // Validate fields after experience only if no errors before experience
+    if (!hasError) {
+        for (const field of fieldsToCheckAfterExperience) {
+            const input = document.getElementById(field.id);
+            if (field.isRadio) {
+                const radios = document.getElementsByName(field.id);
+                const isChecked = Array.from(radios).some(radio => radio.checked);
+                if (!isChecked) {
                     hasError = true;
                     firstErrorFieldId = field.id;
                     break;
                 }
+            } else if (field.isCheckbox) {
+                if (!input.checked) {
+                    hasError = true;
+                    firstErrorFieldId = field.id;
+                    break;
+                }
+            } else if (input.value.trim() === '') {
+                hasError = true;
+                firstErrorFieldId = field.id;
+                break;
             }
         }
-
-        // Show the first error message if any errors found
-        if (hasError) {
-            showErrorMessage(firstErrorFieldId);
-            return true; // Indicate that errors were found
-        }
-
-        return false; // No errors found
     }
+
+    // Show the first error message if any errors found
+    if (hasError) {
+        showErrorMessage(firstErrorFieldId);
+        return true; // Indicate that errors were found
+    }
+
+    return false; // No errors found
+}
 
     function showErrorMessage(fieldId) {
         const field = [...fieldsToCheckBeforeExperience, ...fieldsToCheckAfterExperience].find(f => f.id === fieldId);
