@@ -105,9 +105,12 @@ input, select, button {
     background-color: rgba(122, 122, 255, 0.1); /* Barva ozadja vhodnih elementov */
 }
 
-.options {
-    font-size: 1.25vh /* Slightly larger for smaller screens */
-}
+@media (max-width: 1000px) {
+    .options {
+        max-width: 100%;
+        font-size: 2vmin;
+    }
+  }
 
 .checkboxes {
     display: grid; /* Prikaz potrditvenih polj v mreži */
