@@ -163,14 +163,14 @@ button:hover {
     position: fixed; /* Fiksna pozicija */
     bottom: 20px; /* Razdalja od dna */
     right: 20px; /* Razdalja od desne */
-    width: 40px; /* Širina gumba */
-    height: 40px; /* Višina gumba */
+    width: 32px; /* Širina gumba */
+    height: 32px; /* Višina gumba */
     background-color: #007BFF; /* Barva gumba */
     color: white; /* Barva ikone */
     text-align: center; /* Centriraj ikono */
-    line-height: 40px; /* Vertikalno centriranje ikone */
+    line-height: 32px; /* Vertikalno centriranje ikone */
     border-radius: 50%; /* Krožna oblika */
-    font-size: 24px; /* Velikost ikone */
+    font-size: 20px; /* Velikost ikone */
     text-decoration: none; /* Odstrani podčrtavanje */
     opacity: 0; /* Sprva skrita */
     transition: opacity 0.3s; /* Efekt prehoda */

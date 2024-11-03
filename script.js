@@ -39,7 +39,7 @@ nameInput.addEventListener('input', function (e) {
     let value = e.target.value;
 
     // Remove any characters that are not letters or spaces
-    value = value.replace(/[^a-zA-Z\s]/g, '');
+    value = value.replace(/[^a-zA-zšđžčćŠĐŽČĆ\s]/g, '');
 
     // Set the formatted value back to the input
     e.target.value = value;
@@ -90,32 +90,31 @@ const addressInput = document.getElementById('address');
 addressInput.addEventListener('input', function (e) {
     let value = e.target.value;
 
-    // Remove leading/trailing whitespace and any invalid characters
-    value = value.replace(/[^a-zA-Z0-9\s]/g, '');
+    // Remove any leading/trailing whitespace and invalid characters
+    value = value.replace(/[^a-zA-Z0-9šđžčćŠĐŽČĆ\s]/g, '');
 
-    // Regular expression to match "at least two letters, space, at least one digit"
-    const addressPattern = /^[A-Za-z]{2,}\s\d+$/;
+    // Regular expression to match "one or more words, space, at least one digit"
+    const addressPattern = /^([A-Za-zšđžčćŠĐŽČĆ]{2,}\s)+\d+$/;
 
-    // Auto-format: Insert a space before the first digit
-    let letters = value.match(/^[A-Za-z]+/);
-    let digits = value.match(/\d+$/);
-    if (letters && digits) {
-        value = letters[0] + ' ' + digits[0];
+    // Auto-format: Allow multiple words before the first digit
+    let words = value.match(/^([A-Za-zšđžčćŠĐŽČĆ]+\s?)+/); // Match one or more words and spaces
+    let digits = value.match(/\d+$/); // Match any digits at the end
+    if (words && digits) {
+        value = words[0].trim() + ' ' + digits[0]; // Ensure one space between words and digits
     }
 
-    // Check if input matches the pattern
-    
-
-    e.target.value = value; // Set the formatted value back to the input
+    // Set the formatted value back to the input
+    e.target.value = value;
 
     const errorSpan = document.getElementById('address-error');
     if (addressPattern.test(value)) {
         errorSpan.style.display = 'none'; // Hide error if valid
         e.target.setCustomValidity(''); // Clear any previous error
     } else {
-        e.target.setCustomValidity('Vnesite ulico in hišno številko.');
+        e.target.setCustomValidity('Vnesite ulico in hišno številko.'); // Show error if invalid
     }
 });
+
 
 const cityInput = document.getElementById('city');
 const cityErrorSpan = document.getElementById('city-error');
@@ -126,13 +125,13 @@ cityInput.addEventListener('input', function (e) {
     let value = e.target.value;
 
     // Remove any characters that are not letters or spaces
-    value = value.replace(/[^a-zA-Z\s]/g, '');
+    value = value.replace(/[^a-zA-ZšđžčćŠĐŽČĆ\s]/g, '');
 
     // Set the formatted value back to the input
     e.target.value = value;
 
     // Check if the value has at least 2 letters (excluding spaces)
-    const letterCount = (value.match(/[a-zA-Z]/g) || []).length; // Count letters
+    const letterCount = (value.match(/[a-zA-ZšđžčćŠĐŽČĆ]/g) || []).length; // Count letters
 
     // Check the validity of the input
     if (letterCount >= 2) {
@@ -207,7 +206,7 @@ function updateErrorMessage() {
     const errorSpan = document.getElementById('experience-error');
     
     if (!hasExperienceChecked) {
-        errorSpan.innerText = 'Vsaj eno izkušnjo morate izbrati.';
+        errorSpan.innerText = 'Izbrati morate vsaj eno polje.';
         errorSpan.style.display = 'inline';
     } else {
         errorSpan.style.display = 'none';
@@ -310,7 +309,7 @@ function validateFields() {
             Swal.fire({
                 icon: 'error',
                 title: 'Napaka',
-                text: 'Vsaj eno izkušnjo morate izbrati.',
+                text: 'Izbrati morate vsaj eno polje pri izkušnjah.',
                 willClose: () => {
                     setTimeout(() => {
                         scrollToField('experience-error');
@@ -319,7 +318,7 @@ function validateFields() {
             });
     
             const errorSpan = document.getElementById('experience-error');
-            errorSpan.innerText = 'Vsaj eno izkušnjo morate izbrati.';
+            errorSpan.innerText = 'Izbrati morate vsaj eno polje.';
             errorSpan.style.display = 'inline';
         }
     }
