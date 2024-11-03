@@ -1,377 +1,467 @@
+function fadeOut(element) {
+  var op = 1; 
+  var timer = setInterval(function () {
+    if (op <= 0.24) {
+
+      clearInterval(timer);
+      element.style.display = "none"; 
+    }
+    element.style.opacity = op; 
+    op -= op * 0.01; 
+  }, 10); 
+}
+
 window.onload = function () {
-    setTimeout(function () {
-        const loader = document.getElementById('loading');
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.style.display = 'none', 1000); // Adjust this to match transition duration
-    }, 5000);
+  setTimeout(function () {
+    const loader = document.getElementById("loading");
+    fadeOut(loader); 
+  }, 2000); 
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-    const fieldsToCheckBeforeExperience = [
-        { id: 'name', errorMessage: 'Vnesite vaše ime in priimek.' },
-        { id: 'email', errorMessage: 'Vnesite veljaven e-mail naslov.' },
-        { id: 'phone', errorMessage: 'Vnesite veljavno telefonsko številko.' },
-        { id: 'address', errorMessage: 'Vnesite ulico in hišno številko.' },
-        { id: 'postal-code', errorMessage: 'Vnesite veljavno poštno številko.' },
-        { id: 'city', errorMessage: 'Vnesite kraj.' },
-        { id: 'dob', errorMessage: 'Vnesite veljaven datum rojstva.' },
-        { id: 'education-level', errorMessage: 'Izberite stopnjo izobrazbe.' },
-        { id: 'study-field', errorMessage: 'Vnsite vašo smer izobrazbe.' },
-        { id: 'computer-skills', errorMessage: 'Vnesite vaša računalniška znanja.' },
-        { id: 'other-skills', errorMessage: 'Vnesite vaša druga znanja.' },
-    ];
+function toggleMenu() {
+  document.querySelector(".menu").classList.toggle("active");
+}
 
-    const fieldsToCheckAfterExperience = [
-        { id: 'drivers-license', errorMessage: 'Izberite stanje vašega vozniškega dovoljenja.', isRadio: true },
-        { id: 'english', errorMessage: 'Izberite ustrezno stopnjo znanja angleškega jezika.' },
-        { id: 'italian', errorMessage: 'Izberite ustrezno stopnjo znanja italijanskega jezika.' },
-        { id: 'start-date', errorMessage: 'Vnesite veljaven datum začetka dela.' },
-        { id: 'status', errorMessage: 'Izberite ustrezen zaposlitveni status.' },
-        { id: 'file-upload', errorMessage: 'Neveljaven ali manjkajoč življenjepis.' },
-        { id: 'privacy', errorMessage: 'S politiko zasebnosti se morate strinjati za nadaljevanje.', isCheckbox: true },
-    ];
+document.addEventListener("DOMContentLoaded", function () {
+  const fieldsToCheckBeforeExperience = [
+    { id: "name", errorMessage: "Vnesite vaše ime in priimek." },
+    { id: "email", errorMessage: "Vnesite veljaven e-mail naslov." },
+    { id: "phone", errorMessage: "Vnesite veljavno telefonsko številko." },
+    { id: "address", errorMessage: "Vnesite ulico in hišno številko." },
+    { id: "postal-code", errorMessage: "Vnesite veljavno poštno številko." },
+    { id: "city", errorMessage: "Vnesite kraj." },
+    { id: "dob", errorMessage: "Vnesite veljaven datum rojstva." },
+    { id: "education-level", errorMessage: "Izberite stopnjo izobrazbe." },
+    { id: "study-field", errorMessage: "Vnsite vašo smer izobrazbe." },
+    {
+      id: "computer-skills",
+      errorMessage: "Vnesite vaša računalniška znanja.",
+    },
+    { id: "other-skills", errorMessage: "Vnesite vaša druga znanja." },
+  ];
 
-    const nameInput = document.getElementById('name');
-const nameErrorSpan = document.getElementById('name-error');
+  const fieldsToCheckAfterExperience = [
+    {
+      id: "drivers-license",
+      errorMessage: "Izberite stanje vašega vozniškega dovoljenja.",
+      isRadio: true,
+    },
+    {
+      id: "english",
+      errorMessage: "Izberite ustrezno stopnjo znanja angleškega jezika.",
+    },
+    {
+      id: "italian",
+      errorMessage: "Izberite ustrezno stopnjo znanja italijanskega jezika.",
+    },
+    { id: "start-date", errorMessage: "Vnesite veljaven datum začetka dela." },
+    { id: "status", errorMessage: "Izberite ustrezen zaposlitveni status." },
+    {
+      id: "file-upload",
+      errorMessage: "Neveljaven ali manjkajoč življenjepis.",
+    },
+    {
+      id: "privacy",
+      errorMessage:
+        "S politiko zasebnosti se morate strinjati za nadaljevanje.",
+      isCheckbox: true,
+    },
+  ];
 
-nameInput.addEventListener('input', function (e) {
-    // Get the current value of the input field
+  const nameInput = document.getElementById("name");
+  const nameErrorSpan = document.getElementById("name-error");
+
+  nameInput.addEventListener("input", function (e) {
+
     let value = e.target.value;
 
-    // Remove any characters that are not letters or spaces
-    value = value.replace(/[^a-zA-zšđžčćŠĐŽČĆ\s]/g, '');
+    value = value.replace(/[^a-zA-zšđžčćŠĐŽČĆ\s]/g, "");
 
-    // Set the formatted value back to the input
     e.target.value = value;
 
-    // Split the value into parts based on spaces and filter out any empty strings
-    const nameParts = value.split(' ').filter(part => part.length > 0); // Keep only non-empty parts
+    const nameParts = value.split(" ").filter((part) => part.length > 0); 
 
-    // Validate the input value
-    const isValid = nameParts.length >= 2; // Ensure there are at least two parts (first and last name)
+    const isValid = nameParts.length >= 2; 
 
-    // Check the validity of the input
     if (isValid) {
-        nameErrorSpan.style.display = 'none'; // Hide error if valid
-        e.target.setCustomValidity(''); // Clear any previous error
+      nameErrorSpan.style.display = "none"; 
+      e.target.setCustomValidity(""); 
     } else {
-        e.target.setCustomValidity('Vnesite ime in priimek.'); // Set custom error message
+      e.target.setCustomValidity("Vnesite ime in priimek."); 
     }
-});
+  });
 
-    const phoneInput = document.getElementById('phone');
-phoneInput.addEventListener('input', function (e) {
-    let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
-    
-    // Ensure the first digit is 0
-    if (value.length > 0 && value[0] !== '0') {
-        value = '0' + value.slice(1);
+  const phoneInput = document.getElementById("phone");
+  phoneInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, ""); 
+
+    if (value.length > 0 && value[0] !== "0") {
+      value = "0" + value.slice(1);
     }
-    
-    // Apply formatting as ###-###-###
+
     if (value.length > 3 && value.length <= 6) {
-        value = `${value.slice(0, 3)}-${value.slice(3)}`;
+      value = `${value.slice(0, 3)}-${value.slice(3)}`;
     } else if (value.length > 6) {
-        value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6, 9)}`;
+      value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6, 9)}`;
     }
 
-    e.target.value = value; // Set the formatted value back to the input
+    e.target.value = value; 
 
-    const errorSpan = document.getElementById('phone-error');
-    if (value.length === 11) { // 0XX-XXX-XXX has exactly 11 characters
-        errorSpan.style.display = 'none'; // Hide error if valid
-        e.target.setCustomValidity('');
+    const errorSpan = document.getElementById("phone-error");
+    if (value.length === 11) {
+
+      errorSpan.style.display = "none"; 
+      e.target.setCustomValidity("");
     } else {
-        e.target.setCustomValidity('Vnesite veljavno telefonsko številko');
+      e.target.setCustomValidity("Vnesite veljavno telefonsko številko");
     }
-});
+  });
 
-const addressInput = document.getElementById('address');
-addressInput.addEventListener('input', function (e) {
+  const addressInput = document.getElementById("address");
+  addressInput.addEventListener("input", function (e) {
     let value = e.target.value;
 
-    // Remove any leading/trailing whitespace and invalid characters
-    value = value.replace(/[^a-zA-Z0-9šđžčćŠĐŽČĆ\s]/g, '');
+    value = value.replace(/[^a-zA-Z0-9šđžčćŠĐŽČĆ\s]/g, "");
 
-    // Regular expression to match "one or more words, space, at least one digit"
-    const addressPattern = /^([A-Za-zšđžčćŠĐŽČĆ]{2,}\s)+\d+$/;
+    const addressPattern = /^([A-Za-zšđžčćŠĐŽČĆ]{2,}\s)+\d+[a-zA-Z]?$/;
 
-    // Auto-format: Allow multiple words before the first digit
-    let words = value.match(/^([A-Za-zšđžčćŠĐŽČĆ]+\s?)+/); // Match one or more words and spaces
-    let digits = value.match(/\d+$/); // Match any digits at the end
+    let words = value.match(/^([A-Za-zšđžčćŠĐŽČĆ]+\s?)+/); 
+    let digits = value.match(/\d+[a-zA-Z]?$/); 
     if (words && digits) {
-        value = words[0].trim() + ' ' + digits[0]; // Ensure one space between words and digits
+      value = words[0].trim() + " " + digits[0]; 
     }
 
-    // Set the formatted value back to the input
     e.target.value = value;
 
-    const errorSpan = document.getElementById('address-error');
+    const errorSpan = document.getElementById("address-error");
     if (addressPattern.test(value)) {
-        errorSpan.style.display = 'none'; // Hide error if valid
-        e.target.setCustomValidity(''); // Clear any previous error
+      errorSpan.style.display = "none"; 
+      e.target.setCustomValidity(""); 
     } else {
-        e.target.setCustomValidity('Vnesite ulico in hišno številko.'); // Show error if invalid
+      e.target.setCustomValidity("Vnesite ulico in hišno številko."); 
     }
-});
+  });
 
+  const cityInput = document.getElementById("city");
+  const cityErrorSpan = document.getElementById("city-error");
 
-const cityInput = document.getElementById('city');
-const cityErrorSpan = document.getElementById('city-error');
+  cityInput.addEventListener("input", function (e) {
 
-// Add event listener for input validation
-cityInput.addEventListener('input', function (e) {
-    // Get the current value of the input field
     let value = e.target.value;
 
-    // Remove any characters that are not letters or spaces
-    value = value.replace(/[^a-zA-ZšđžčćŠĐŽČĆ\s]/g, '');
+    value = value.replace(/[^a-zA-ZšđžčćŠĐŽČĆ\s]/g, "");
 
-    // Set the formatted value back to the input
     e.target.value = value;
 
-    // Check if the value has at least 2 letters (excluding spaces)
-    const letterCount = (value.match(/[a-zA-ZšđžčćŠĐŽČĆ]/g) || []).length; // Count letters
+    const letterCount = (value.match(/[a-zA-ZšđžčćŠĐŽČĆ]/g) || []).length; 
 
-    // Check the validity of the input
     if (letterCount >= 2) {
-        cityErrorSpan.style.display = 'none'; // Hide error if valid
-        e.target.setCustomValidity(''); // Clear any previous error
+      cityErrorSpan.style.display = "none"; 
+      e.target.setCustomValidity(""); 
     } else {
-        e.target.setCustomValidity('Vnesite veljaven kraj.'); // Set custom error message
+      e.target.setCustomValidity("Vnesite veljaven kraj."); 
     }
-});
+  });
 
-const postalCodeInput = document.getElementById('postal-code');
+  const postalCodeInput = document.getElementById("postal-code");
 
-postalCodeInput.addEventListener('input', function (e) {
-    // Remove any non-digit characters
-    let value = e.target.value.replace(/\D/g, '');
+  postalCodeInput.addEventListener("input", function (e) {
 
-    // Ensure the first digit is not 0
-    if (value.length > 0 && value[0] === '0') {
-        value = value.slice(1); // Remove the leading 0 if it exists
+    let value = e.target.value.replace(/\D/g, "");
+
+    if (value.length > 0 && value[0] === "0") {
+      value = value.slice(1); 
     }
 
-    // Limit to a maximum of 4 digits
     if (value.length > 4) {
-        value = value.slice(0, 4);
+      value = value.slice(0, 4);
     }
 
-    // Set the formatted value back to the input field
     e.target.value = value;
 
-    // Display error if the postal code is not exactly 4 digits or starts with 0
-    const errorSpan = document.getElementById('postal-code-error');
+    const errorSpan = document.getElementById("postal-code-error");
     if (value.length === 4) {
-        errorSpan.style.display = 'none'; // Hide error if valid
-        e.target.setCustomValidity('');
+      errorSpan.style.display = "none"; 
+      e.target.setCustomValidity("");
     } else {
-        e.target.setCustomValidity('Vnesite veljavno poštno številko.');
+      e.target.setCustomValidity("Vnesite veljavno poštno številko.");
     }
-});
+  });
 
+  function validateField(input, errorSpan) {
+    const value = input.value.trim();
 
+    const isOnlySlash = value === "/";
+    const letterCount = (value.match(/[a-zA-ZšđžčćŠĐŽČĆ]/g) || []).length;
 
-function handleNoExperienceSelection() {
-    const noExperienceCheckbox = document.getElementById('no-experience');
+    if (isOnlySlash || letterCount >= 3) {
+      errorSpan.style.display = "none"; 
+      input.setCustomValidity(""); 
+    } else {
+      input.setCustomValidity("Polje je obvezno."); 
+    }
+  }
+
+  const studyFieldInput = document.getElementById("study-field");
+  const studyFieldErrorSpan = document.getElementById("study-field-error");
+
+  studyFieldInput.addEventListener("input", function () {
+    validateField(studyFieldInput, studyFieldErrorSpan);
+  });
+
+  const computerSkillsInput = document.getElementById("computer-skills");
+  const computerSkillsErrorSpan = document.getElementById(
+    "computer-skills-error"
+  );
+
+  computerSkillsInput.addEventListener("input", function () {
+    validateField(computerSkillsInput, computerSkillsErrorSpan);
+  });
+
+  const otherSkillsInput = document.getElementById("other-skills");
+  const otherSkillsErrorSpan = document.getElementById("other-skills-error");
+
+  otherSkillsInput.addEventListener("input", function () {
+    validateField(otherSkillsInput, otherSkillsErrorSpan);
+  });
+
+  const fileUploadInput = document.getElementById("file-upload");
+  const fileUploadErrorSpan = document.getElementById("file-upload-error");
+
+  fileUploadInput.addEventListener("change", function (e) {
+    const file = e.target.files[0]; 
+
+    fileUploadErrorSpan.style.display = "none";
+    fileUploadInput.setCustomValidity("");
+
+    if (file) {
+
+      const fileExtension = file.name.split(".").pop().toLowerCase(); 
+
+      const allowedExtensions = ["doc", "docx", "pdf"];
+      if (!allowedExtensions.includes(fileExtension)) {
+        fileUploadErrorSpan.style.display = "block"; 
+        fileUploadInput.setCustomValidity(
+          "Naložite življenjepis v formatu .doc, .docx ali .pdf."
+        ); 
+      }
+    }
+  });
+
+  function handleNoExperienceSelection() {
+    const noExperienceCheckbox = document.getElementById("no-experience");
     const checkboxes = document.querySelectorAll('input[name="experience"]');
 
-    // If "Nimam izkušenj" is checked, uncheck all other boxes
     if (noExperienceCheckbox.checked) {
-        checkboxes.forEach(checkbox => {
-            if (checkbox !== noExperienceCheckbox) {
-                checkbox.checked = false;
-            }
-        });
+      checkboxes.forEach((checkbox) => {
+        if (checkbox !== noExperienceCheckbox) {
+          checkbox.checked = false;
+        }
+      });
     }
     updateErrorMessage();
-}
+  }
 
-function handleExperienceSelection() {
-    const noExperienceCheckbox = document.getElementById('no-experience');
+  function handleExperienceSelection() {
+    const noExperienceCheckbox = document.getElementById("no-experience");
     const checkboxes = document.querySelectorAll('input[name="experience"]');
 
-    // If any other checkbox is checked, uncheck "Nimam izkušenj"
-    if (Array.from(checkboxes).some(checkbox => checkbox.checked && checkbox !== noExperienceCheckbox)) {
-        noExperienceCheckbox.checked = false;
+    if (
+      Array.from(checkboxes).some(
+        (checkbox) => checkbox.checked && checkbox !== noExperienceCheckbox
+      )
+    ) {
+      noExperienceCheckbox.checked = false;
     }
     updateErrorMessage();
-}
+  }
 
-function updateErrorMessage() {
-    // This function can be used to dynamically show/hide experience-related errors
-    const experienceCheckboxes = document.querySelectorAll('input[name="experience"]');
-    const hasExperienceChecked = Array.from(experienceCheckboxes).some(checkbox => checkbox.checked);
-    const errorSpan = document.getElementById('experience-error');
-    
+  function updateErrorMessage() {
+
+    const experienceCheckboxes = document.querySelectorAll(
+      'input[name="experience"]'
+    );
+    const hasExperienceChecked = Array.from(experienceCheckboxes).some(
+      (checkbox) => checkbox.checked
+    );
+    const errorSpan = document.getElementById("experience-error");
+
     if (!hasExperienceChecked) {
-        errorSpan.innerText = 'Izbrati morate vsaj eno polje.';
-        errorSpan.style.display = 'inline';
+      errorSpan.innerText = "Izbrati morate vsaj eno polje.";
+      errorSpan.style.display = "inline";
     } else {
-        errorSpan.style.display = 'none';
+      errorSpan.style.display = "none";
     }
-}
+  }
 
-// Add event listeners for experience checkboxes
-const experienceCheckboxes = document.querySelectorAll('input[name="experience"]');
-experienceCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function () {
-        if (checkbox.id === 'no-experience') {
-            handleNoExperienceSelection();
-        } else {
-            handleExperienceSelection();
-        }
+  const experienceCheckboxes = document.querySelectorAll(
+    'input[name="experience"]'
+  );
+  experienceCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      if (checkbox.id === "no-experience") {
+        handleNoExperienceSelection();
+      } else {
+        handleExperienceSelection();
+      }
     });
-});
+  });
 
-// Input validation and formatting logic (rest of your existing code)...
+  function validateLanguageProficiency() {
+    const englishSelect = document.getElementById("english");
+    const italianSelect = document.getElementById("italian");
+    const englishValue = englishSelect.value;
+    const italianValue = italianSelect.value;
 
-function validateFields() {
+    if (englishValue === "main" && italianValue === "main") {
+      Swal.fire({
+        icon: "error",
+        title: "Napaka",
+        text: "Oba jezika ne moreta biti materna jezika.",
+      });
+      return true; 
+    }
+    return false; 
+  }
+
+  function validateFields() {
     let hasError = false;
-    let firstErrorFieldId = '';
+    let firstErrorFieldId = "";
 
-    // Reset error messages
-    [...fieldsToCheckBeforeExperience, ...fieldsToCheckAfterExperience].forEach(field => {
+    [...fieldsToCheckBeforeExperience, ...fieldsToCheckAfterExperience].forEach(
+      (field) => {
         const errorSpan = document.getElementById(`${field.id}-error`);
-        errorSpan.style.display = 'none'; // Hide error message
-    });
+        errorSpan.style.display = "none"; 
+      }
+    );
 
-    // Validate fields before experience
     for (const field of fieldsToCheckBeforeExperience) {
-        const input = document.getElementById(field.id);
-        if (input.value.trim() === '' && !hasError) {
-            hasError = true;
-            firstErrorFieldId = field.id; // Set to the first empty required field
-        }
-    }
-
-    // Check if at least one experience checkbox is selected
-    const hasExperienceChecked = Array.from(experienceCheckboxes).some(checkbox => checkbox.checked);
-    if (!hasExperienceChecked && !hasError) {
+      const input = document.getElementById(field.id);
+      if (input.value.trim() === "" && !hasError) {
         hasError = true;
-        firstErrorFieldId = 'experience-error'; // Point to experience error
+        firstErrorFieldId = field.id; 
+      }
     }
 
-    // Validate fields after experience only if no errors before experience
+    const hasExperienceChecked = Array.from(experienceCheckboxes).some(
+      (checkbox) => checkbox.checked
+    );
+    if (!hasExperienceChecked && !hasError) {
+      hasError = true;
+      firstErrorFieldId = "experience-error"; 
+    }
+
     if (!hasError) {
-        for (const field of fieldsToCheckAfterExperience) {
-            const input = document.getElementById(field.id);
-            if (field.isRadio) {
-                const radios = document.getElementsByName(field.id);
-                const isChecked = Array.from(radios).some(radio => radio.checked);
-                if (!isChecked) {
-                    hasError = true;
-                    firstErrorFieldId = field.id;
-                    break;
-                }
-            } else if (field.isCheckbox) {
-                if (!input.checked) {
-                    hasError = true;
-                    firstErrorFieldId = field.id;
-                    break;
-                }
-            } else if (input.value.trim() === '') {
-                hasError = true;
-                firstErrorFieldId = field.id;
-                break;
-            }
+      for (const field of fieldsToCheckAfterExperience) {
+        const input = document.getElementById(field.id);
+        if (field.isRadio) {
+          const radios = document.getElementsByName(field.id);
+          const isChecked = Array.from(radios).some((radio) => radio.checked);
+          if (!isChecked) {
+            hasError = true;
+            firstErrorFieldId = field.id;
+            break;
+          }
+        } else if (field.isCheckbox) {
+          if (!input.checked) {
+            hasError = true;
+            firstErrorFieldId = field.id;
+            break;
+          }
+        } else if (input.value.trim() === "") {
+          hasError = true;
+          firstErrorFieldId = field.id;
+          break;
         }
+      }
     }
 
-    // Show the first error message if any errors found
+    if (!hasError) {
+      if (validateLanguageProficiency()) {
+        hasError = true; 
+        firstErrorFieldId = "english"; 
+      }
+    }
+
     if (hasError) {
-        showErrorMessage(firstErrorFieldId);
-        return true; // Indicate that errors were found
+      showErrorMessage(firstErrorFieldId);
+      return true; 
     }
 
-    return false; // No errors found
-}
+    return false; 
+  }
 
-    function showErrorMessage(fieldId) {
-        const field = [...fieldsToCheckBeforeExperience, ...fieldsToCheckAfterExperience].find(f => f.id === fieldId);
-        if (field) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Napaka',
-                text: field.errorMessage,
-                willClose: () => {
-                    setTimeout(() => {
-                        scrollToField(fieldId);
-                    }, 200); // Ensure SweetAlert fully closes before scrolling
-                }
-            });
-    
-            const errorSpan = document.getElementById(`${fieldId}-error`);
-            errorSpan.innerText = field.errorMessage;
-            errorSpan.style.display = 'inline';
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Napaka',
-                text: 'Izbrati morate vsaj eno polje pri izkušnjah.',
-                willClose: () => {
-                    setTimeout(() => {
-                        scrollToField('experience-error');
-                    }, 200);
-                }
-            });
-    
-            const errorSpan = document.getElementById('experience-error');
-            errorSpan.innerText = 'Izbrati morate vsaj eno polje.';
-            errorSpan.style.display = 'inline';
-        }
-    }
+  function showErrorMessage(fieldId) {
+    const field = [
+      ...fieldsToCheckBeforeExperience,
+      ...fieldsToCheckAfterExperience,
+    ].find((f) => f.id === fieldId);
+    if (field) {
+      Swal.fire({
+        icon: "error",
+        title: "Napaka",
+        text: field.errorMessage,
+        willClose: () => {
+          setTimeout(() => {
+            scrollToField(fieldId);
+          }, 200); 
+        },
+      });
 
-    function scrollToField(fieldId) {
-        const fieldElement = document.getElementById(fieldId);
-        if (fieldElement) {
-            const rect = fieldElement.getBoundingClientRect();
-            if (rect.top < 0 || rect.bottom > window.innerHeight) {
-                // Scroll to the field smoothly with a 100px offset for visibility
-                window.scrollTo({
-                    top: window.scrollY + rect.top - 100, // Offset by 100px
-                    behavior: 'smooth'
-                });
-            }
-            
-            // Focus and select the content of the field after scrolling
-            setTimeout(() => {
-                fieldElement.focus();
-                if (fieldElement.select) {
-                    fieldElement.select(); // Select the content if it's an input or textarea
-                }
-            }, 400); // Delay to ensure scroll completes before selecting
-        }
-    }
-
-    document.getElementById('job-application-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        if (!validateFields()) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Prijava poslana!',
-                text: 'Vaša prijava za delovno mesto je bila uspešno poslana.',
-            });
-            event.target.reset();
-        }
-    });
-});
-
-// Get the button
-const scrollToTopButton = document.getElementById("scrollToTop");
-
-// Show or hide the button depending on scroll position
-window.onscroll = function() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollToTopButton.classList.add("show"); // Show button
+      const errorSpan = document.getElementById(`${fieldId}-error`);
+      errorSpan.innerText = field.errorMessage;
+      errorSpan.style.display = "inline";
     } else {
-        scrollToTopButton.classList.remove("show"); // Hide button
-    }
-};
+      Swal.fire({
+        icon: "error",
+        title: "Napaka",
+        text: "Izbrati morate vsaj eno polje pri izkušnjah.",
+        willClose: () => {
+          setTimeout(() => {
+            scrollToField("experience-error");
+          }, 200);
+        },
+      });
 
-// Smooth scroll to the top when the button is clicked
-scrollToTopButton.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent default anchor click behavior
-    window.scrollTo({top: 0, behavior: 'smooth'}); // Smooth scroll
+      const errorSpan = document.getElementById("experience-error");
+      errorSpan.innerText = "Izbrati morate vsaj eno polje.";
+      errorSpan.style.display = "inline";
+    }
+  }
+
+  function scrollToField(fieldId) {
+    const fieldElement = document.getElementById(fieldId);
+    if (fieldElement) {
+      const rect = fieldElement.getBoundingClientRect();
+      if (rect.top < 0 || rect.bottom > window.innerHeight) {
+
+        window.scrollTo({
+          top: window.scrollY + rect.top - 100, 
+          behavior: "smooth",
+        });
+      }
+
+      setTimeout(() => {
+        fieldElement.focus();
+        if (fieldElement.select) {
+          fieldElement.select(); 
+        }
+      }, 400); 
+    }
+  }
+
+  document
+    .getElementById("job-application-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!validateFields()) {
+        Swal.fire({
+          icon: "success",
+          title: "Prijava poslana!",
+          text: "Vaša prijava za delovno mesto je bila uspešno poslana.",
+        });
+        event.target.reset();
+        window.scrollTo(0, 0);
+      }
+    });
 });

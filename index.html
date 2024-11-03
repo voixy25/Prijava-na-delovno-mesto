@@ -1,59 +1,105 @@
 <!DOCTYPE html>
 <html lang="sl">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv='cache-control' content='no-cache'> 
-    <meta http-equiv='expires' content='0'> 
-    <meta http-equiv='pragma' content='no-cache'>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
     <title>Prijava na delovno mesto | Domen Skomina</title>
-    <link rel="icon" href="slike/favicon.ico" type="image/x-icon"> <!-- Use the appropriate path to your favicon -->
-    <link rel="shortcut icon" href="slike/favicon.ico" type="image/x-icon"> <!-- For older browsers -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="slike/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="slike/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="fa/fontawesome-free-6.6.0-web/css/all.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://fonts.cdnfonts.com/css/gill-sans-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/gill-sans-2" rel="stylesheet" />
   </head>
 
   <body>
     <div id="loading">
-      <img src="slike/load.gif" alt="Loading...">
-  </div>
-    <div class="container" >
-      <h1>Prijava na delovno mesto</h1>
+      <img src="slike/load.gif" alt="Loading..." />
+    </div>
+
+    <nav class="navbar">
+      <div class="menu-toggle-big" onclick="toggleMenu()">☰</div>
+      <ul class="menu">
+        <li>
+          <a href="https://jjspa.si/bazeni/"
+            >BAZENI <span class="dropdown-icon">▼</span></a
+          >
+        </li>
+        <li>
+          <a href="https://jjspa.si/savne/"
+            >SAVNE <span class="dropdown-icon">▼</span></a
+          >
+        </li>
+        <li>
+          <a href="https://jjspa.si/bioklimatske-pergole/"
+            >PERGOLE <span class="dropdown-icon">▼</span></a
+          >
+        </li>
+        <li><a href="#">ZAPOSLITEV</a></li>
+      </ul>
+      <div class="logo">
+        <a href="https://jjspa.si/"
+          ><img
+            src="slike/logo.png"
+            alt="JJ Spa Logo"
+            class="icons"
+            id="logo-main"
+        /></a>
+      </div>
+      <div class="right-icons">
+        <input type="text" placeholder="Iskanje..." class="search-bar" />
+        <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+        <a href="#"><i class="fas fa-user"></i></a>
+        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <div class="language">
+          <span class="dropdown-icon">&#127480;&#127470; ▼</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>PRIJAVA NA DELOVNO MESTO</h1>
       <div class="divider"></div>
       <form id="job-application-form" method="post">
         <label>Ime in priimek *</label>
-        <input type="text" id="name" placeholder="Janez Novak">
-        <span class="error-message" id="name-error">Vnesite ime in priimek.</span>
+        <input type="text" id="name" placeholder="Janez Novak" />
+        <span class="error-message" id="name-error"
+          >Vnesite ime in priimek.</span
+        >
 
         <label>E-mail *</label>
-        <input type="email" id="email" placeholder="janez.novak@gmail.com">
+        <input type="email" id="email" placeholder="janez.novak@gmail.com" />
         <span class="error-message" id="email-error"
           >Vnesite veljaven e-mail naslov.</span
         >
 
         <label>Telefonska številka *</label>
-        <input type="text" id="phone" placeholder="051-838-398">
+        <input type="text" id="phone" placeholder="051-838-398" />
         <span class="error-message" id="phone-error"
           >Vnesite veljavno telefonsko številko.</span
         >
 
         <label>Ulica in hišna številka *</label>
-        <input type="text" id="address" placeholder="Slovenska ulica 12">
+        <input type="text" id="address" placeholder="Slovenska ulica 12" />
         <span class="error-message" id="address-error">Polje je obvezno.</span>
 
         <label>Poštna številka *</label>
-        <input type="text" id="postal-code" placeholder="1000">
+        <input type="text" id="postal-code" placeholder="1000" />
         <span class="error-message" id="postal-code-error"
           >Vnesite veljavno poštno številko.</span
         >
 
         <label>Kraj *</label>
-        <input type="text" id="city" placeholder="Ljubljana">
+        <input type="text" id="city" placeholder="Ljubljana" />
         <span class="error-message" id="city-error">Polje je obvezno.</span>
 
         <label>Datum rojstva *</label>
-        <input type="date" id="dob" class="dates">
+        <input type="date" id="dob" class="dates" />
         <span class="error-message" id="dob-error"
           >Vnesite veljaven datum rojstva.</span
         >
@@ -64,13 +110,32 @@
           <option value="1">I. nedokončana osnovna šola</option>
           <option value="2">II. končana osnovna šola</option>
           <option value="3">III. nižje poklicno izobraževanje (2-letno)</option>
-          <option value="4">IV. srednje poklicno izobraževanje (3-letno)</option>
-          <option value="5">V. gimnazijsko, srednje poklicno-tehniško izobraževanje, srednje tehniško oziroma drugo izobraževanje</option>
-          <option value="6">VI./1 Višješolski program (do 1994), višješolski strokovni program</option>
-          <option value="7">VI./2 specializacija po višješolskem programu, visokošolski strokovni program /visokošolski strokovni in univerzitetni program (1. bolonjska stopnja)</option>
-          <option value="8">VII. specializacija po visokošolskem strokovnem programu, univerzitetni program (magisterij stroke, 2. bolonjska stopnja)</option>
-          <option value="9">VIII./1 specializacija po univerzitetnem programu, magisterij znanosti</option>
-          <option value="10">VIII./3 doktorat znanosti (doktorat znanosti, 3. bolonjska stopnja)</option>
+          <option value="4">
+            IV. srednje poklicno izobraževanje (3-letno)
+          </option>
+          <option value="5">
+            V. gimnazijsko, srednje poklicno-tehniško izobraževanje, srednje
+            tehniško oziroma drugo izobraževanje
+          </option>
+          <option value="6">
+            VI./1 Višješolski program (do 1994), višješolski strokovni program
+          </option>
+          <option value="7">
+            VI./2 specializacija po višješolskem programu, visokošolski
+            strokovni program /visokošolski strokovni in univerzitetni program
+            (1. bolonjska stopnja)
+          </option>
+          <option value="8">
+            VII. specializacija po visokošolskem strokovnem programu,
+            univerzitetni program (magisterij stroke, 2. bolonjska stopnja)
+          </option>
+          <option value="9">
+            VIII./1 specializacija po univerzitetnem programu, magisterij
+            znanosti
+          </option>
+          <option value="10">
+            VIII./3 doktorat znanosti (doktorat znanosti, 3. bolonjska stopnja)
+          </option>
         </select>
         <span class="error-message" id="education-level-error"
           >Izberite stopnjo izobrazbe.</span
@@ -81,7 +146,7 @@
           type="text"
           id="study-field"
           placeholder="Tehnik računalništva"
-        >
+        />
         <span class="error-message" id="study-field-error"
           >Polje je obvezno.</span
         >
@@ -91,7 +156,7 @@
           type="text"
           id="computer-skills"
           placeholder="HTML, CSS, JavaScript, Java, SQL ..."
-        >
+        />
         <span class="error-message" id="computer-skills-error"
           >Polje je obvezno.</span
         >
@@ -101,7 +166,7 @@
           type="text"
           id="other-skills"
           placeholder="Borzno posredovanje, oblikovanje ..."
-        >
+        />
         <span class="error-message" id="other-skills-error"
           >Polje je obvezno.</span
         >
@@ -114,7 +179,7 @@
               id="admin"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="admin" class="combo">Administracija</label>
           </div>
           <div class="checkbox-item">
@@ -123,7 +188,7 @@
               id="accounting"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="accounting" class="combo">Računovodstvo</label>
           </div>
           <div class="checkbox-item">
@@ -132,7 +197,7 @@
               id="management"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="management" class="combo">Upravljanje tveganj</label>
           </div>
           <div class="checkbox-item">
@@ -141,7 +206,7 @@
               id="leadership"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="leadership" class="combo">Vodenje</label>
           </div>
           <div class="checkbox-item">
@@ -150,7 +215,7 @@
               id="commercial"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="commercial" class="combo">Komerciala</label>
           </div>
           <div class="checkbox-item">
@@ -159,7 +224,7 @@
               id="procurement"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="procurement" class="combo">Nabava</label>
           </div>
           <div class="checkbox-item">
@@ -168,7 +233,7 @@
               id="sales"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="sales" class="combo">Prodaja</label>
           </div>
           <div class="checkbox-item">
@@ -177,7 +242,7 @@
               id="project"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="project" class="combo">Projektno delo</label>
           </div>
           <div class="checkbox-item">
@@ -186,7 +251,7 @@
               id="law"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="law" class="combo">Pravo</label>
           </div>
           <div class="checkbox-item">
@@ -195,7 +260,7 @@
               id="hr"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="hr" class="combo">Ravnanje s človeškimi viri</label>
           </div>
           <div class="checkbox-item">
@@ -204,7 +269,7 @@
               id="marketing"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="marketing" class="combo">Marketing</label>
           </div>
           <div class="checkbox-item">
@@ -213,7 +278,7 @@
               id="it"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="it" class="combo">Informatika</label>
           </div>
           <div class="checkbox-item">
@@ -222,7 +287,7 @@
               id="finance"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="finance" class="combo">Finance</label>
           </div>
           <div class="checkbox-item">
@@ -231,7 +296,7 @@
               id="analytics"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="analytics" class="combo">Analitika</label>
           </div>
           <div class="checkbox-item">
@@ -240,7 +305,7 @@
               id="logistics"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="logistics" class="combo">Logistika</label>
           </div>
           <div class="checkbox-item">
@@ -249,7 +314,7 @@
               id="warehouse"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="warehouse" class="combo">Delo v skladišču</label>
           </div>
           <div class="checkbox-item">
@@ -258,7 +323,7 @@
               id="assembly"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="assembly" class="combo">Montaža</label>
           </div>
           <div class="checkbox-item">
@@ -267,7 +332,7 @@
               id="service"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="service" class="combo">Servis</label>
           </div>
           <div class="checkbox-item">
@@ -276,7 +341,7 @@
               id="delivery"
               name="experience"
               onclick="handleExperienceSelection()"
-            >
+            />
             <label for="delivery" class="combo">Dostava</label>
           </div>
           <div class="checkbox-item">
@@ -285,7 +350,7 @@
               id="no-experience"
               name="experience"
               onclick="handleNoExperienceSelection()"
-            >
+            />
             <label for="no-experience" class="combo">Nimam izkušenj</label>
           </div>
         </div>
@@ -301,7 +366,7 @@
               id="drivers-license-yes"
               name="drivers-license"
               value="yes"
-            >
+            />
             <label for="drivers-license-yes" class="radio">DA</label>
           </div>
           <div>
@@ -310,7 +375,7 @@
               id="drivers-license-no"
               name="drivers-license"
               value="no"
-            >
+            />
             <label for="drivers-license-no" class="radio">NE</label>
           </div>
         </div>
@@ -351,7 +416,7 @@
         >
 
         <label>Začetek dela *</label>
-        <input type="date" id="start-date" class="dates">
+        <input type="date" id="start-date" class="dates" />
         <span class="error-message" id="start-date-error"
           >Vnesite veljaven datum začetka dela.</span
         >
@@ -369,18 +434,16 @@
         >
 
         <label>Naloži življenjepis *</label>
-        <input type="file" id="file-upload" accept=".doc,.docx,.pdf">
+        <input type="file" id="file-upload" accept=".doc,.docx,.pdf" />
         <span class="error-message" id="file-upload-error"
-          >Naložite življenjepis.</span
+          >Naložite življenjepis v formatu .doc, .docx ali .pdf.</span
         >
 
         <div class="checkbox">
-          <input type="checkbox" id="privacy">
+          <input type="checkbox" id="privacy" />
           <label for="privacy"
             >Prebral sem in se strinjam s
-            <a
-              href="https://jjspa.si/politika-zasebnosti/"
-              target="_blank"
+            <a href="https://jjspa.si/politika-zasebnosti/" target="_blank"
               >politiko zasebnosti</a
             ></label
           >
@@ -391,12 +454,10 @@
 
         <button type="submit">POŠLJI</button>
       </form>
-      <!-- Scroll to Top Button -->
-        <a href="#" id="scrollToTop" class="scroll-to-top">&#9757;</a>
     </div>
     <script src="script.js"></script>
   </body>
   <footer>
-    Vse pravice pridržane. Copyright 2024 © Domen Skomina.
+    Vse pravice pridržane. Copyright 2024 © Domen Skomina za JJ SPA d.o.o.
   </footer>
 </html>
