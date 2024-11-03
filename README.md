@@ -6,7 +6,7 @@ Spletna stran obrazca za prijavo na delovno mesto za podjetje JJ Spa d.o.o. Obra
 - Preprost in pregleden obrazec
 - Veliko različnih vrst vnosnih polj
 - Validacija vnesenih podatkov
-- Preverjanje formatov vnosa (Ime in priimek, e-mail, telefonska številka, ulica in hišna številka, poštna številka, kraj, ...)
+- Preverjanje formatov vnosa (Ime in priimek, e-mail, telefonska številka, ulica in hišna številka, poštna številka, ...)
 - Narejeno z uporabo HTML5, CSS3 in Modern JavaScript (ES6+)
 
 ## 🛠 Orodja
