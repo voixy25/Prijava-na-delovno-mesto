@@ -26,6 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const fieldsToCheckBeforeExperience = [
     { id: "name", errorMessage: "Vnesite vaše ime in priimek." },
     { id: "email", errorMessage: "Vnesite veljaven e-mail naslov." },
+    {
+      id: "sex",
+      errorMessage: "Izberite vaš spol.",
+      isRadio: true,
+    },
     { id: "phone", errorMessage: "Vnesite veljavno telefonsko številko." },
     { id: "address", errorMessage: "Vnesite ulico in hišno številko." },
     { id: "postal-code", errorMessage: "Vnesite veljavno poštno številko." },
@@ -314,11 +319,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const italianValue = italianSelect.value;
 
     if (englishValue === "main" && italianValue === "main") {
-      Swal.fire({
-        icon: "error",
-        title: "Napaka",
-        text: "Oba jezika ne moreta biti materna jezika.",
-      });
       return true; 
     }
     return false; 
@@ -335,13 +335,48 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     );
 
-    for (const field of fieldsToCheckBeforeExperience) {
-      const input = document.getElementById(field.id);
-      if (input.value.trim() === "" && !hasError) {
-        hasError = true;
-        firstErrorFieldId = field.id; 
-      }
+
+
+    // Step 1: Check only 'name' and 'email' fields
+for (const field of fieldsToCheckBeforeExperience) {
+  if (field.id === "name" || field.id === "email") {
+    const input = document.getElementById(field.id);
+    
+    if (input.value.trim() === "") {
+      hasError = true;
+      firstErrorFieldId = field.id;
+      break; // Stop further checks if an error is found in 'name' or 'email'
     }
+  }
+}
+
+// Step 2: Check remaining fields after 'sex'
+if (!hasError) { // Only proceed if there were no errors with 'name' or 'email'
+  for (const field of fieldsToCheckBeforeExperience) {
+    // Skip 'name' and 'email' since they were checked already
+    if (field.id === "name" || field.id === "email") continue;
+
+    const input = document.getElementById(field.id);
+
+    // For radio inputs
+    if (field.isRadio) {
+      const radios = document.getElementsByName(field.id);
+      const isChecked = Array.from(radios).some((radio) => radio.checked);
+      if (!isChecked) {
+        hasError = true;
+        firstErrorFieldId = field.id;
+        break; // Stop further checks if an error is found
+      }
+    } 
+    // For regular inputs
+    else if (input.value.trim() === "") {
+      hasError = true;
+      firstErrorFieldId = field.id;
+      break; // Stop further checks if an error is found
+    }
+  }
+}
+    
 
     const hasExperienceChecked = Array.from(experienceCheckboxes).some(
       (checkbox) => checkbox.checked
@@ -351,37 +386,77 @@ document.addEventListener("DOMContentLoaded", function () {
       firstErrorFieldId = "experience-error"; 
     }
 
-    if (!hasError) {
-      for (const field of fieldsToCheckAfterExperience) {
-        const input = document.getElementById(field.id);
-        if (field.isRadio) {
-          const radios = document.getElementsByName(field.id);
-          const isChecked = Array.from(radios).some((radio) => radio.checked);
-          if (!isChecked) {
-            hasError = true;
-            firstErrorFieldId = field.id;
-            break;
-          }
-        } else if (field.isCheckbox) {
-          if (!input.checked) {
-            hasError = true;
-            firstErrorFieldId = field.id;
-            break;
-          }
-        } else if (input.value.trim() === "") {
+    // Proceed only if no errors so far
+if (!hasError) {
+  // Step 1: Validate driver's license field
+  const driversLicenseField = fieldsToCheckAfterExperience.find(field => field.id === "drivers-license");
+  if (driversLicenseField) {
+    const radios = document.getElementsByName(driversLicenseField.id);
+    const isChecked = Array.from(radios).some((radio) => radio.checked);
+    if (!isChecked) {
+      hasError = true;
+      firstErrorFieldId = driversLicenseField.id;
+    }
+  }
+
+  // Step 2: Validate language fields if no error in driver's license
+  if (!hasError) {
+    const languageFields = ["english", "italian"];
+    for (const fieldId of languageFields) {
+      const input = document.getElementById(fieldId);
+      if (input && input.value.trim() === "") {
+        hasError = true;
+        firstErrorFieldId = fieldId;
+        break; // Stop further checks if an error is found in language fields
+      }
+    }
+  }
+
+  if(validateLanguageProficiency()){
+    Swal.fire({
+      icon: "error",
+      title: "Napaka",
+      text: "Oba jezika ne moreta biti materna jezika.",
+    });
+    const errorSpan = document.getElementById("english-error");
+      errorSpan.innerText = "Izberite ustrezno stopnjo znanja angleškega jezika.";
+      errorSpan.style.display = "inline";
+      const errorSpan2 = document.getElementById("italian-error");
+      errorSpan2.innerText = "Izberite ustrezno stopnjo znanja italijanskega jezika.";
+      errorSpan2.style.display = "inline";
+    return true;
+  }
+
+  // Step 3: Validate the remaining fields after driver's license and language checks
+  if (!hasError) {
+    for (const field of fieldsToCheckAfterExperience) {
+      // Skip driver's license and language fields as they've already been checked
+      if (["drivers-license", "english", "italian"].includes(field.id)) continue;
+
+      const input = document.getElementById(field.id);
+
+      if (field.isRadio) {
+        const radios = document.getElementsByName(field.id);
+        const isChecked = Array.from(radios).some((radio) => radio.checked);
+        if (!isChecked) {
           hasError = true;
           firstErrorFieldId = field.id;
           break;
         }
+      } else if (field.isCheckbox) {
+        if (!input.checked) {
+          hasError = true;
+          firstErrorFieldId = field.id;
+          break;
+        }
+      } else if (input && input.value.trim() === "") {
+        hasError = true;
+        firstErrorFieldId = field.id;
+        break;
       }
     }
-
-    if (!hasError) {
-      if (validateLanguageProficiency()) {
-        hasError = true; 
-        firstErrorFieldId = "english"; 
-      }
-    }
+  }
+}
 
     if (hasError) {
       showErrorMessage(firstErrorFieldId);

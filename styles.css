@@ -253,6 +253,20 @@
   .checkboxes input[type="checkbox"] {
     margin: 0 5px 5px 0;
   }
+
+  #sex {
+    display: flex;
+    gap: 15px;
+  }
+  
+  #sex div {
+    display: flex;
+    align-items: center;
+  }
+  
+  #sex input[type="radio"] {
+    margin-right: 5px;
+  }
   
   .error-message {
     display: none;
@@ -273,6 +287,8 @@
   #drivers-license input[type="radio"] {
     margin-right: 5px;
   }
+
+  
   
   footer {
     min-height: 4em;
