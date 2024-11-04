@@ -1,4 +1,4 @@
-## 📝 Obrazec za prijavo na delovno mesto
+# 📝 Obrazec za prijavo na delovno mesto
 Spletna stran obrazca za prijavo na delovno mesto za podjetje JJ Spa d.o.o. Obrazec je preprost ampak vsebuje veliko funkcionalnosti.  
 
 ## 🚀 Funkcionalnosti
