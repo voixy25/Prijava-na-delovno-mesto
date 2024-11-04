@@ -28,4 +28,4 @@ Domen Skomina
 Posebna zahvala gre mojemu prijatelju Mateju (ChiqFu), ki mi je dal idejo za ta obrazec in posredoval vire s svoje spetne strani. Zahvala tudi vsem prijateljem, ki ste pomagali pri projektu s testiranjem obrazca. 
 
 ## 📃 Licenca
-MIT Licence
+MIT License
