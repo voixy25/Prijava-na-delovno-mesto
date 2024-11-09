@@ -193,6 +193,67 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  const emailInput = document.getElementById("email");
+const emailErrorSpan = document.getElementById("email-error");
+
+emailInput.addEventListener("input", function (e) {
+  let value = e.target.value.toLowerCase(); // Convert input to lowercase
+
+  // Updated email pattern to match the specified requirements
+  const emailPattern = /^[a-z][a-z0-9!#$%&'*+/=?^_`{|}~](?:[a-z0-9!#$%&'*+/=?^_`{|}~.-]{0,62}[a-z0-9!#$%&'*+/=?^_`{|}~])?@[a-z][a-z0-9-]{1,61}[a-z0-9]\.[a-z]{2,}$/;
+
+  // Test the input against the pattern
+  if (emailPattern.test(value)) {
+    emailErrorSpan.style.display = "none"; 
+    e.target.setCustomValidity(""); 
+  } else {
+    e.target.setCustomValidity("Vnesite veljaven e-mail naslov.");
+  }
+
+  e.target.value = value; // Update the field with the lowercase value
+});
+
+
+// Date of Birth (Datum rojstva) Validation - Must be at least 18 years old
+const dobInput = document.getElementById("dob");
+const dobErrorSpan = document.getElementById("dob-error");
+
+dobInput.addEventListener("input", function (e) {
+  const value = e.target.value;
+  const selectedDate = new Date(value);
+  
+  const currentDate = new Date();
+  const minDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
+
+  // Check if the selected date is at least 18 years in the past
+  if (selectedDate <= minDate) {
+    dobErrorSpan.style.display = "none"; 
+    e.target.setCustomValidity(""); 
+  } else {
+    e.target.setCustomValidity("Vnesite datum, ki ustreza starosti najmanj 18 let."); 
+  }
+});
+
+
+// Start Date (Začetek dela) Validation
+const startDateInput = document.getElementById("start-date");
+const startDateErrorSpan = document.getElementById("start-date-error");
+
+startDateInput.addEventListener("input", function (e) {
+  const value = e.target.value;
+  const selectedDate = new Date(value);
+  const currentDate = new Date();
+
+  // Check if the start date is today or in the future
+  if (selectedDate >= currentDate) {
+    startDateErrorSpan.style.display = "none"; 
+    e.target.setCustomValidity(""); 
+  } else {
+    e.target.setCustomValidity("Vnesite veljaven datum začetka dela."); 
+  }
+});
+
+
   function validateField(input, errorSpan) {
     const value = input.value.trim();
 
