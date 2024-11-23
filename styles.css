@@ -201,9 +201,6 @@
     height: 2vw;
   }
 
-  div.checkbox-item, label.combo{
-  }
-
   #full-width{
     flex: 0 0 100%;
   }
