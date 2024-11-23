@@ -196,7 +196,7 @@
     min-width: 30vh;
   }
 
-  input[type=text], input[type=email], select, input[type=date], #sex, #drivers-licence, #file-upload{
+  input[type=text], input[type=tel], input[type=email], input[type=email], select, input[type=date], #sex, #drivers-license, #file-upload{
     width: 90%;
     margin: 0 auto;
   }
