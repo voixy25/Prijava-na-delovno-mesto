@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-size: 1vw;
   }
   
   html,
@@ -26,8 +25,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: rgb(255, 255, 255);
     z-index: -1;
   }
@@ -36,8 +35,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,12 +49,6 @@
   .fade-out {
     opacity: 0;
   }
-
-  .swal-wide{
-    width: 40vw;
-    height: 35vw;
-    font-size: 2vw;
-}
   
   .inquiry {
     font-weight: bold;
@@ -65,7 +58,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5vw 1vw;
+    padding: 15px 20px;
     background-color: rgb(7, 36, 89);
     color: white;
     position: relative;
@@ -74,9 +67,9 @@
   .menu {
     list-style: none;
     display: flex;
-    gap: 1vw;
+    gap: 20px;
     position: absolute;
-    left: 1vw;
+    left: 20px;
   }
   
   .menu li a {
@@ -87,57 +80,50 @@
   }
   
   .dropdown-icon {
-    font-size: 1vw;
-    margin-right: 0.2vw;
+    font-size: 10px;
+    margin-left: 5px;
   }
   
   #logo-main {
+    margin: 0 20px;
     cursor: pointer;
-    min-width: 4vw;
-    min-height: 4vw;
-  }
-
-  a{
-    margin-right: 1vw;
   }
   
   .right-icons {
     display: flex;
     align-items: center;
-    gap: 1vw;
+    gap: 15px;
     position: absolute;
-    right: 1vw;
+    right: 20px;
   }
   
   .right-icons a i {
     color: white;
-    width: 1vw;
   }
   
   .search-bar {
-    padding: 0.1vw 0 0.1vw 0.7vw;
-    border-radius: 1vw;
+    padding: 5px 0px 5px 10px;
+    border-radius: 15px;
     border: none;
-    font-size: 1vw;
-    margin: 0 0.2vw 0.1vw 0;
+    font-size: 12px;
+    margin: 0 10px 5px 0;
     color: white;
-    min-width: 20rem;
   }
   
   .language {
     display: flex;
     align-items: center;
+    gap: 5px;
     color: white;
     cursor: pointer;
   }
   
   .menu-toggle-big {
     display: none;
-    font-size: 2vw;
   }
   
   #search-icon {
-    display: none;    
+    display: none;
   }
   
   @media (max-width: 768px) {
@@ -151,13 +137,11 @@
       display: block;
       cursor: pointer;
       position: absolute;
-      left: 1vw;
+      left: 20px;
     }
   
     #logo-main {
-      cursor: pointer;
-    min-width: 4vw;
-    min-height: 4vw;
+      margin-left: 20px;
     }
   
     #search-icon {
@@ -166,72 +150,32 @@
   }
   
   .icons {
-    height: 1vw;
-    width: 1vw;
+    height: 32px;
+    width: 32px;
   }
   
   .container {
     flex: 1;
-    width: 90vw;
-    margin: 1vw auto;
+    width: 80%;
+    margin: 20px auto;
     background-color: #f1f1ff88;
-    padding: 1vw;
-    border-radius: 1vw;
-    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.2);
-  }
-
-  .flexbox {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1vw;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .fields {
-    flex: 1 1 300px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.5vw;
-    min-width: 30vh;
-  }
-
-  input[type=text], input[type=email], select, input[type=date], #sex, #drivers-licence, #file-upload{
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  input[type=checkbox], input[type=radio]{
-    width: 0.5vw;
-    height: 0.5vw;
-    margin-right: 0.5vw;
-  }
-
-  #full-width{
-    flex: 0 0 100%;
-  }
-
-  .checkboxes{
-    margin-left: 4vw;
-  }
-
-  #full-width2{
-    flex: 0 0 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   }
   
   h1 {
     text-align: center;
-    font-size: 2vw;
   }
   
   .divider {
-    background-color: rgba(7, 36, 89, 0.2);
+    background-color: rgba(7, 36, 89, 0.3);
     display: block;
-    height: 0.3vw;
-    margin: 2vmin auto 1vmin;
-    max-width: 3rem;
+    height: 3px;
+    margin: 1em auto 0;
+    max-width: 30px;
     width: 100%;
-    border-radius: 2vw;
+    border-radius: 2px;
   }
   
   form {
@@ -240,12 +184,12 @@
   }
   
   label {
-    margin: 0.4vw 0;
+    margin-top: 10px;
     font-weight: bold;
   }
   
   .radio {
-    margin-right: 1vw;
+    margin-top: 5px;
     font-weight: normal;
   }
   
@@ -255,38 +199,42 @@
   }
   
   #privacy {
-    margin-top: 1vw;
+    margin-top: 10px;
   }
   
   #cb {
-    margin-bottom: 1vw;
+    margin-bottom: 5px;
   }
   
   input,
   select,
   button {
-    padding: 0.5vw;
-    border: 0.1vmax solid #ccc;
-    border-radius: 20vw;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
     background-color: rgba(122, 122, 255, 0.1);
-  }
-
-  input{
-    padding: 0.5vw;
   }
   
   .checkbox {
-    margin-top: 1vw;
+    margin-top: 5px;
+  }
+  
+  @media (max-width: 1000px) {
+    .options {
+      max-width: 100%;
+      font-size: 2vmin;
+    }
   }
   
   .checkboxes {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15vw, auto));
-    gap: 0.1vw;
+    grid-template-columns: repeat(auto-fill, minmax(242px, auto));
+    gap: 7px;
   }
   
   button {
-    margin-top: 1vw;
+    margin-top: 20px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -303,12 +251,12 @@
   }
   
   .checkboxes input[type="checkbox"] {
-    margin: 0 0.4vw 0.2vw 0;
+    margin: 0 5px 5px 0;
   }
 
   #sex {
     display: flex;
-    gap: 1vw;
+    gap: 15px;
   }
   
   #sex div {
@@ -317,18 +265,18 @@
   }
   
   #sex input[type="radio"] {
-    margin: 0 0.4vw 0 0;
+    margin-right: 5px;
   }
   
   .error-message {
     display: none;
     color: red;
-    margin-top: 1vw;
+    margin-top: 5px;
   }
   
   #drivers-license {
     display: flex;
-    gap: 1vw;
+    gap: 15px;
   }
   
   #drivers-license div {
@@ -337,15 +285,16 @@
   }
   
   #drivers-license input[type="radio"] {
-    margin: 0 0.4vw 0 0;
+    margin-right: 5px;
   }
 
+  
+  
   footer {
     min-height: 4em;
     height: 100vw;
     width: 100%;
-    padding: 1vw 0;
+    padding: 20px 0;
     background-color: #d3d3d3;
     text-align: center;
   }
-  
