@@ -29,17 +29,17 @@
       <ul class="menu">
         <li>
           <a href="https://jjspa.si/bazeni/"
-            >BAZENI <span class="dropdown-icon">▼</span></a
+            ><span class="dropdown-icon">▼</span>BAZENI</a
           >
         </li>
         <li>
           <a href="https://jjspa.si/savne/"
-            >SAVNE <span class="dropdown-icon">▼</span></a
+            ><span class="dropdown-icon">▼</span>SAVNE</a
           >
         </li>
         <li>
           <a href="https://jjspa.si/bioklimatske-pergole/"
-            >PERGOLE <span class="dropdown-icon">▼</span></a
+            ><span class="dropdown-icon">▼</span>PERGOLE</a
           >
         </li>
         <li><a href="#">ZAPOSLITEV</a></li>
@@ -59,27 +59,32 @@
         <a href="#"><i class="fas fa-user"></i></a>
         <a href="#"><i class="fas fa-shopping-cart"></i></a>
         <div class="language">
-          <span class="dropdown-icon">&#127480;&#127470; ▼</span>
+          <span class="dropdown-icon">&#127480;&#127470; ▼</span></div>
         </div>
       </div>
     </nav>
     <div class="container">
       <h1>PRIJAVA NA DELOVNO MESTO</h1>
       <div class="divider"></div>
+      
       <form id="job-application-form" method="post">
-        <label>Ime in priimek *</label>
+        <div class="flexbox">
+        
+        <div class="fields">
+ <label>Ime in priimek *</label>
         <input type="text" id="name" placeholder="Janez Novak" />
         <span class="error-message" id="name-error"
-          >Vnesite ime in priimek.</span
-        >
+          >Vnesite ime in priimek.</span></div>
 
-        <label>E-mail *</label>
+        <div class="fields">
+ <label>E-mail *</label>
         <input type="email" id="email" placeholder="janez.novak@gmail.com" />
         <span class="error-message" id="email-error"
-          >Vnesite veljaven e-mail naslov.</span
-        >
+          >Vnesite veljaven e-mail naslov.</span></div>
+        
 
-        <label>Spol *</label>
+        <div class="fields">
+ <label>Spol *</label>
         <div id="sex">
           <div>
             <input
@@ -101,36 +106,41 @@
           </div>
         </div>
         <span class="error-message" id="sex-error"
-          >Izberite polje.</span
-        >
+          >Izberite polje.</span></div>
+        
 
-        <label>Telefonska številka *</label>
+        <div class="fields">
+ <label>Telefonska številka *</label>
         <input type="text" id="phone" placeholder="051-838-398" />
         <span class="error-message" id="phone-error"
-          >Vnesite veljavno telefonsko številko.</span
-        >
+          >Vnesite veljavno telefonsko številko.</span></div>
 
-        <label>Ulica in hišna številka *</label>
+        
+
+        <div class="fields">
+ <label>Ulica in hišna številka *</label>
         <input type="text" id="address" placeholder="Slovenska ulica 12" />
-        <span class="error-message" id="address-error">Polje je obvezno.</span>
+        <span class="error-message" id="address-error">Polje je obvezno.</span></div>
 
-        <label>Poštna številka *</label>
+        <div class="fields">
+ <label>Poštna številka *</label>
         <input type="text" id="postal-code" placeholder="1000" />
         <span class="error-message" id="postal-code-error"
-          >Vnesite veljavno poštno številko.</span
-        >
+          >Vnesite veljavno poštno številko.</span></div>
 
-        <label>Kraj *</label>
+        <div class="fields">
+ <label>Kraj *</label>
         <input type="text" id="city" placeholder="Ljubljana" />
-        <span class="error-message" id="city-error">Polje je obvezno.</span>
+        <span class="error-message" id="city-error">Polje je obvezno.</span></div>
 
-        <label>Datum rojstva *</label>
+        <div class="fields">
+ <label>Datum rojstva *</label>
         <input type="date" id="dob" class="dates" />
         <span class="error-message" id="dob-error"
-          >Vnesite veljaven datum rojstva.</span
-        >
+          >Vnesite veljaven datum rojstva.</span></div>
 
-        <label>Stopnja izobrazbe *</label>
+        <div class="fields">
+ <label>Stopnja izobrazbe *</label>
         <select id="education-level" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="1">I. nedokončana osnovna šola</option>
@@ -164,39 +174,39 @@
           </option>
         </select>
         <span class="error-message" id="education-level-error"
-          >Izberite stopnjo izobrazbe.</span
-        >
+          >Izberite stopnjo izobrazbe.</span></div>
 
-        <label>Smer izobrazbe *</label>
+        <div class="fields">
+ <label>Smer izobrazbe *</label>
         <input
           type="text"
           id="study-field"
           placeholder="Tehnik računalništva"
         />
         <span class="error-message" id="study-field-error"
-          >Polje je obvezno.</span
-        >
+          >Polje je obvezno.</span></div>
 
-        <label>Računalniška znanja *</label>
+        <div class="fields">
+ <label>Računalniška znanja *</label>
         <input
           type="text"
           id="computer-skills"
           placeholder="HTML, CSS, JavaScript, Java, SQL ..."
         />
         <span class="error-message" id="computer-skills-error"
-          >Polje je obvezno.</span
-        >
+          >Polje je obvezno.</span></div>
 
-        <label>Druga znanja *</label>
+        <div class="fields">
+ <label>Druga znanja *</label>
         <input
           type="text"
           id="other-skills"
           placeholder="Borzno posredovanje, oblikovanje ..."
         />
         <span class="error-message" id="other-skills-error"
-          >Polje je obvezno.</span
-        >
+          >Polje je obvezno.</span></div>
 
+          <div class="fields" id="full-width">
         <label id="cb">Leto ali več izkušenj na področju *</label>
         <div class="checkboxes">
           <div class="checkbox-item">
@@ -381,10 +391,12 @@
           </div>
         </div>
         <span class="error-message" id="experience-error"
-          >Izbrati morate vsaj eno polje.</span
-        >
+          >Izbrati morate vsaj eno polje.</span>
 
-        <label>Vozniško dovoljenje *</label>
+        </div>
+
+        <div class="fields">
+ <label>Vozniško dovoljenje *</label>
         <div id="drivers-license">
           <div>
             <input
@@ -406,10 +418,10 @@
           </div>
         </div>
         <span class="error-message" id="drivers-license-error"
-          >Izberite polje.</span
-        >
+          >Izberite polje.</span></div>
 
-        <label>Znanje angleškega jezika *</label>
+        <div class="fields">
+ <label>Znanje angleškega jezika *</label>
         <select id="english" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="none">Ne znam</option>
@@ -422,10 +434,10 @@
           <option value="main">Materni jezik</option>
         </select>
         <span class="error-message" id="english-error"
-          >Izberite ustrezno stopnjo znanja.</span
-        >
+          >Izberite ustrezno stopnjo znanja.</span></div>
 
-        <label>Znanje italijanskega jezika *</label>
+        <div class="fields">
+ <label>Znanje italijanskega jezika *</label>
         <select id="italian" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="none">Ne znam</option>
@@ -438,16 +450,16 @@
           <option value="main">Materni jezik</option>
         </select>
         <span class="error-message" id="italian-error"
-          >Izberite ustrezno stopnjo znanja.</span
-        >
+          >Izberite ustrezno stopnjo znanja.</span></div>
 
-        <label>Začetek dela *</label>
+        <div class="fields">
+ <label>Začetek dela *</label>
         <input type="date" id="start-date" class="dates" />
         <span class="error-message" id="start-date-error"
-          >Vnesite veljaven datum začetka dela.</span
-        >
+          >Vnesite veljaven datum začetka dela.</span></div>
 
-        <label>Zaposlitveni status *</label>
+        <div class="fields">
+ <label>Zaposlitveni status *</label>
         <select id="status" class="options">
           <option value="">--Prosim izberite--</option>
           <option value="employed">Zaposlen</option>
@@ -456,15 +468,15 @@
           <option value="student">Študent</option>
         </select>
         <span class="error-message" id="status-error"
-          >Izberite ustrezen zaposlitveni status.</span
-        >
+          >Izberite ustrezen zaposlitveni status.</span></div>
 
-        <label>Naloži življenjepis *</label>
+        <div class="fields">
+ <label>Naloži življenjepis *</label>
         <input type="file" id="file-upload" accept=".doc,.docx,.pdf" />
         <span class="error-message" id="file-upload-error"
-          >Naložite življenjepis v formatu .doc, .docx ali .pdf.</span
-        >
+          >Naložite življenjepis v formatu .doc, .docx ali .pdf.</span></div>
 
+          <div class="fields" id="full-width2">
         <div class="checkbox">
           <input type="checkbox" id="privacy" />
           <label for="privacy"
@@ -476,7 +488,9 @@
         </div>
         <span class="error-message" id="privacy-error"
           >S politiko zasebnosti se morate strinjati za nadaljevanje.
-        </span>
+        </span></div>
+
+      </div>
 
         <button type="submit">POŠLJI</button>
       </form>
