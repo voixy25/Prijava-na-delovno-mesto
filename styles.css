@@ -68,9 +68,9 @@
   .menu {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 1vw;
     position: absolute;
-    left: 20px;
+    left: 1vw;
   }
   
   .menu li a {
@@ -146,7 +146,7 @@
       display: block;
       cursor: pointer;
       position: absolute;
-      left: 20px;
+      left: 1vw;
     }
   
     #logo-main {
@@ -170,7 +170,7 @@
     width: 90vw;
     margin: 1vw auto;
     background-color: #f1f1ff88;
-    padding: 20px;
+    padding: 1vw;
     border-radius: 1vw;
     box-shadow: 0 0 1vw rgba(0, 0, 0, 0.2);
   }
@@ -178,7 +178,7 @@
   .flexbox {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1.5vw;
     align-items: center;
     justify-content: center;
   }
@@ -197,12 +197,17 @@
   }
 
   input[type=checkbox], input[type=radio]{
-    width: 1vmax;
-    height: 2vw;
+    width: 0.5vw;
+    height: 0.5vw;
+    margin-right: 0.5vw;
   }
 
   #full-width{
     flex: 0 0 100%;
+  }
+
+  .checkboxes{
+    margin-left: 4vw;
   }
 
   #full-width2{
@@ -236,6 +241,7 @@
   
   .radio {
     margin-top: 5px;
+    margin-right: 1vw;
     font-weight: normal;
   }
   
@@ -255,14 +261,16 @@
   input,
   select,
   button {
-    padding: 10px;
+    padding: 0.5vw;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 20vw;
     background-color: rgba(122, 122, 255, 0.1);
   }
 
-  
+  input{
+    padding: 0.5vw;
+  }
   
   .checkbox {
     margin-top: 5px;
@@ -304,7 +312,7 @@
 
   #sex {
     display: flex;
-    gap: 15px;
+    gap: 1vw;
   }
   
   #sex div {
@@ -313,18 +321,18 @@
   }
   
   #sex input[type="radio"] {
-    margin-right: 5px;
+    margin: 0 0.4 0.2vw 0;
   }
   
   .error-message {
     display: none;
     color: red;
-    margin-top: 5px;
+    margin-top: 1vw;
   }
   
   #drivers-license {
     display: flex;
-    gap: 25px;
+    gap: 1vw;
   }
   
   #drivers-license div {
@@ -333,11 +341,9 @@
   }
   
   #drivers-license input[type="radio"] {
-    margin-right: 0.5vw;
+    margin: 0 0.4vw 0.2vw 0;
   }
 
-  
-  
   footer {
     min-height: 4em;
     height: 100vw;
