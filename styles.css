@@ -26,8 +26,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgb(255, 255, 255);
     z-index: -1;
   }
@@ -36,8 +36,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,6 +50,12 @@
   .fade-out {
     opacity: 0;
   }
+
+  .swal-wide{
+    width: 40vw;
+    height: 35vw;
+    font-size: 2vw;
+}
   
   .inquiry {
     font-weight: bold;
@@ -109,7 +115,7 @@
   }
   
   .search-bar {
-    padding: 0.1vw 0px 0.1vw 0.7vw;
+    padding: 0.1vw 0 0.1vw 0.7vw;
     border-radius: 1vw;
     border: none;
     font-size: 1vw;
@@ -121,7 +127,6 @@
   .language {
     display: flex;
     align-items: center;
-    gap: 5px;
     color: white;
     cursor: pointer;
   }
@@ -178,7 +183,7 @@
   .flexbox {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5vw;
+    gap: 1vw;
     align-items: center;
     justify-content: center;
   }
@@ -240,7 +245,6 @@
   }
   
   .radio {
-    margin-top: 5px;
     margin-right: 1vw;
     font-weight: normal;
   }
@@ -251,19 +255,18 @@
   }
   
   #privacy {
-    margin-top: 10px;
+    margin-top: 1vw;
   }
   
   #cb {
-    margin-bottom: 5px;
+    margin-bottom: 1vw;
   }
   
   input,
   select,
   button {
     padding: 0.5vw;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 0.1vmax solid #ccc;
     border-radius: 20vw;
     background-color: rgba(122, 122, 255, 0.1);
   }
@@ -273,14 +276,7 @@
   }
   
   .checkbox {
-    margin-top: 5px;
-  }
-  
-  @media (max-width: 1080px) {
-    .options {
-      max-width: 100%;
-      font-size: 2vmin;
-    }
+    margin-top: 1vw;
   }
   
   .checkboxes {
@@ -290,7 +286,7 @@
   }
   
   button {
-    margin-top: 20px;
+    margin-top: 1vw;
     background-color: #007bff;
     color: white;
     border: none;
@@ -321,7 +317,7 @@
   }
   
   #sex input[type="radio"] {
-    margin: 0 0.4 0.2vw 0;
+    margin: 0 0.4vw 0 0;
   }
   
   .error-message {
@@ -341,14 +337,14 @@
   }
   
   #drivers-license input[type="radio"] {
-    margin: 0 0.4vw 0.2vw 0;
+    margin: 0 0.4vw 0 0;
   }
 
   footer {
     min-height: 4em;
     height: 100vw;
     width: 100%;
-    padding: 20px 0;
+    padding: 1vw 0;
     background-color: #d3d3d3;
     text-align: center;
   }

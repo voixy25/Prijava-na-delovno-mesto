@@ -478,6 +478,7 @@ if (!hasError) {
       icon: "error",
       title: "Napaka",
       text: "Oba jezika ne moreta biti materna jezika.",
+      customClass: 'swal-wide',
     });
     const errorSpan = document.getElementById("english-error");
       errorSpan.innerText = "Izberite ustrezno stopnjo znanja angleškega jezika.";
@@ -537,6 +538,7 @@ if (!hasError) {
         icon: "error",
         title: "Napaka",
         text: field.errorMessage,
+        customClass: 'swal-wide',
         willClose: () => {
           setTimeout(() => {
             scrollToField(fieldId);
@@ -552,6 +554,7 @@ if (!hasError) {
         icon: "error",
         title: "Napaka",
         text: "Izbrati morate vsaj eno polje pri izkušnjah.",
+        customClass: 'swal-wide',
         willClose: () => {
           setTimeout(() => {
             scrollToField("experience-error");
@@ -595,6 +598,7 @@ if (!hasError) {
           icon: "success",
           title: "Prijava poslana!",
           text: "Vaša prijava za delovno mesto je bila uspešno poslana.",
+          customClass: 'swal-wide',
         });
         event.target.reset();
         window.scrollTo(0, 0);
